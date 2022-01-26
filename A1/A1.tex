@@ -109,12 +109,18 @@ As every regular language has a DFA which accepts it, let D be $(Q, \Sigma, \del
 state of the D as the accepting state of the N. Add $\epsilon$ transitions from the accepting states of D to a new state 
 $s$ in NFA. Make $s$ the start state of the NFA.\\
 So N is $(Q_1, \Sigma, \delta^{'}, q_0^{'} , F^{'} )$ such that
-\begin{center}
-$Q_1=Q\cup\{s\}$\\
-$F^{'}=q_0$\\
-$q_0^{'}=s$ \\
-$\delta^{'}(q_1,a) = (q_2 \: | \: \delta(q_2,a)=q_1 \: and \: q_1,q_2 \in Q) \cup(s \: |\: q_1\in F\; and \; a=\epsilon)$  
-\end{center}
+\begin{equation}
+\begin{split}
+&            Q_1=Q\cup\{s\}\\
+&           F^{'}=q_0\\
+&           \delta^{'}(q_1,a) = 
+            \begin{cases*}
+            q_2 & if $q_1 \in Q$  and  $\delta(q_2,a)=q_1$\\
+            s       & if $ q_1 \in F$ and $a=\epsilon$
+            \end{cases*}\\
+&           q_0^{'}=s \\
+\end{split}
+\end{equation}
 \textbf{To Prove:} The language accepted by N is $A^R$.\\
 \textbf{Proof:} Now take any string $w_1 w_2....w_n$ from the language A. The path(path is state then alphabet taken then
  next state reached) taken by this string to accept state in D would be $q_0,w_1,q_1,w_2,q_2.....q_n,w_n,f$ where $q_i\in
