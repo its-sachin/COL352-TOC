@@ -1,8 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{float}
-
+\usepackage{amsmath}
+\usepackage{bm}
 \title{COL352: Assignment 1}
 \author{Sachin 2019CS10722 }
 \date{January, 2022}
@@ -19,7 +18,28 @@
 
 % -------------------------------------------------
 \section{Question 2}
-
+\textbf{An all-NFA M is a 5-tuple \boldsymbol{$(Q, \Sigma, \delta, q_0 , F )$} that accepts \boldsymbol{$x \in \Sigma^{*}$} 
+if every possible state that M could be in after reading input x is a state from F . Note, in contrast, that an ordinary NFA 
+accepts a string if some state among these possible states is an accept state. Prove that all-NFAs recognize the class of regular languages.}\\
+\\
+To prove that all-NFA's recognise the class of regular languages we need to show two things, firstly that the language accepted 
+by all-NFA's is regular, and secondly given any regular language there exists an all-NFA which accepts it. Following are the proofs of these parts,
+\\
+\\
+\textbf{To Prove:} Language accepted by all-NFA is regular.\\
+\textbf{Proof:} Now by the definition, all-NFA M is a 5-tuple $(Q, \Sigma, \delta, q_0 , F )$ that accepts $x \in \Sigma^{*}$ if 
+every possible state that M could be in after reading input x is a state from F . This would mean the all-NFA's are NFA because NFA a
+ccepts the string even if some of the states reached after reading an input x is in accept state F. NOw we know that the language 
+accepted by NFA is regular. Therefore the language accepted by all-NFA is also regular. Hence proved.\\
+\\
+\textbf{To Prove:} For every regular language there exists an all-NFA that accepts it.\\
+\textbf{Proof:} We know that for every regular language there exists a DFA which accepts it. Now the definition of a 
+DFA M is that it is a 5-tuple $(Q, \Sigma, \delta, q_0 , F )$ that accepts $x \in \Sigma^{*}$ if the state that M could 
+be in after reading input x is a state from F. Now we also know that the set of states DFA M would be in after reading the 
+input x is a singleton set (Deterministic nature) and the state belongs to F if x is accepted by DFA. So every DFA is an
+ all-NFA. Therefore for every regular language, there exists an all-NFA that accepts it. Hence proved.\\
+\\
+Now above two facts would imply that the all-NFA's recognize the class of regular languages.
 
 
 
