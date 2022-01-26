@@ -106,7 +106,7 @@ As every regular language has a DFA which accepts it, let D be $(Q, \Sigma, \del
  the language accepted by NFA is indeed $A^R$.\\
 \\
 \textbf{Construction:} To construct this NFA N we will have to reverse all the edges of the DFA D. Also make the start 
-state of the D as the accepting state of the N. Add $\epsilon$ transitions from the accepting states of D to a new state 
+state of the D as the accepting state of the N. Add $\epsilon$ transitions to the accepting states of D from a new state 
 $s$ in NFA. Make $s$ the start state of the NFA.\\
 So N is $(Q_1, \Sigma, \delta^{'}, q_0^{'} , F^{'} )$ such that
 \begin{equation}
@@ -115,8 +115,8 @@ So N is $(Q_1, \Sigma, \delta^{'}, q_0^{'} , F^{'} )$ such that
 &           F^{'}=q_0\\
 &           \delta^{'}(q_1,a) = 
             \begin{cases*}
-            q_2 & if $q_1 \in Q \setminus F$  and  $\delta(q_2,a)=q_1$\\
-            s       & if $ q_1 \in F$ and $a=\epsilon$
+            q_2 & if $q_1 \in Q$  and  $\delta(q_2,a)=q_1$\\
+            F       & if $ q_1= s$ and $a=\epsilon$
             \end{cases*}\\
 &           q_0^{'}=s \\
 \end{split}
