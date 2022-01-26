@@ -61,7 +61,31 @@ Now above two facts would imply that the all-NFA's recognize the class of regula
 % ------------------------------------------------
 \section{Question 5}
 
-
+\textbf{For any string \boldsymbol{$w = w_1 w_2 . . . w_n$} the reverse of w written \boldsymbol{$w^R$} is the string 
+\boldsymbol{$w_n . . . w_2 w_1$}. For any language A, let \boldsymbol{$A^R ={w^R | w \in A}$}. Show that if A is regular,
+ then so is \boldsymbol{$A^R$}. In other words, regular languages are closed under the reverse operation.}\\
+\\
+As every regular language has a DFA which accepts it, let D be $(Q, \Sigma, \delta, q_0, F )$ that accepts the language
+ A. Now we will construct an NFA N from this DFA. The steps of the construction are given below. We will then show that 
+ the language accepted by NFA is indeed $A^R$.\\
+\\
+\textbf{Construction:} To construct this NFA N we will have to reverse all the edges of the DFA D. Also make the start 
+state of the D as the accepting state of the N. Add $\epsilon$ transitions from the accepting states of D to a new state 
+$s$ in NFA. Make $s$ the start state of the NFA.\\
+So N is $(Q_1, \Sigma, \delta^{'}, q_0^{'} , F^{'} )$ such that
+\begin{center}
+$Q_1=Q\cup\{s\}$\\
+$F^{'}=q_0$\\
+$q_0^{'}=s$ \\
+$\delta^{'}(q_1,a) = (q_2 \: | \: \delta(q_2,a)=q_1 \: and \: q_1,q_2 \in Q) \cup(s \: |\: q_1\in F\; and \; a=\epsilon)$  
+\end{center}
+\textbf{To Prove:} The language accepted by N is $A^R$.\\
+\textbf{Proof:} Now take any string $w_1 w_2....w_n$ from the language A. The path(path is state then alphabet taken then 
+next state reached) taken by this string to accept state in D would be $q_0,w_1,q_1,w_2,q_2.....q_n,w_n,f$ where $q_i\in Q$ 
+and $f\in F$. Now take the reverse of the string $w_n w_{n-1}....w_1$. There exist a path from start to accept state in N 
+as which is as follows $s,\epsilon,f,w_n,q_n,w_{n-1}.....q_1,w_1,q_0)$. We know that $q_0$ is an accept state of N.
+Thus we have got an NFA that has an accepting path for any string w in $A^R$, hence $A^R$ is regular. Hence we have proved 
+that regular languages are closed under the reverse operation. 
 
 
 
