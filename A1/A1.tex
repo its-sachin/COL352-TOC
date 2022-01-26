@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{bm}
 \title{COL352: Assignment 1}
 \author{Sachin 2019CS10722 }
@@ -12,10 +13,45 @@
 
 \section{Question 1}
 
+\textbf{Given an alphabet $\Gamma $ = $\{l_1,...,l_k\}$, construct an NFA that accepts strings that don't have
+all the characters from $\Gamma $. Can you give an NFA with k states?}\\
 
+Consider the NFA N = {$(Q, \Sigma, \delta, q_0 , F )$} where,\\
+$Q = 2^\Gamma = \{\phi, \{l_1\}, \{l_2\}, ....... \Gamma\}$\\
+$\Sigma = \Gamma$\\
+$q_0 = \phi$\\
+$F = Q \setminus  \Gamma$\\
+$\delta: Q \times \Sigma \times Q$ defined as follows:\\
 
+\begin{equation}
+    \delta (q,a) = 
+    \begin{cases*}
+      q & if $a \in q$ \\
+      q \bigcup \{a\}        & otherwise
+    \end{cases*}
+  \end{equation}
 
+\textbf{Claim: } N accepts only those strings that don't have all the characters from $\Gamma $.\\
 
+\textbf{Proof: } \\
+
+    Let S = $x_1 x_2 ..... x_k$ be any arbitrary string, let's consider the run of s on N.\\
+    $\phi \xrightarrow{x_1} \{x_1\} \xrightarrow{x_1} \{x_1,x_2\} ....... \xrightarrow{x_k} \bigcup \{x_i\}$\\
+    NOTE: \{\} is a set in above expression, and $\bigcup \{x_i\}$ will contain single copy of each alphabet.\\
+    \begin{enumerate}
+        \item Case 1: $\bigcup \{x_i\} = \Gamma$ \\
+        This means that string s contains all the alphabets from $\Gamma $.\\
+        Also, final state of N = $\bigcup \{x_i\} = \Gamma \notin $ F.\\
+        Hence, N does not accepts the string s.
+        \pagebreak
+        \item Case 1: $\bigcup \{x_i\} \subset \Gamma$ \\
+        This means that string s does not contains all the alphabets from $\Gamma $.\\
+        Also, final state of N (let $p_k$) = $\bigcup \{x_i\} \neq \Gamma => p_k \in $ F.\\
+        Hence, N does accepts the string s.\\
+    \end{enumerate}
+
+Hence proved that N accepts only those strings that don't have all the characters from $\Gamma $.\\
+\pagebreak
 % -------------------------------------------------
 \section{Question 2}
 \textbf{An all-NFA M is a 5-tuple \boldsymbol{$(Q, \Sigma, \delta, q_0 , F )$} that accepts \boldsymbol{$x \in \Sigma^{*}$} 
@@ -42,7 +78,7 @@ input x is a singleton set (Deterministic nature) and the state belongs to F if 
 Now above two facts would imply that the all-NFA's recognize the class of regular languages.
 
 
-
+\pagebreak
 % ------------------------------------------------
 \section{Question 3}
 
@@ -50,14 +86,14 @@ Now above two facts would imply that the all-NFA's recognize the class of regula
 
 
 
-
+\pagebreak
 % ------------------------------------------------
 \section{Question 4}
 
 
 
 
-
+\pagebreak
 % ------------------------------------------------
 \section{Question 5}
 
@@ -94,7 +130,7 @@ f$. We know that f is an accept state of D.Thus we have got an DFA that has an a
 Hence we have proved that regular languages are closed under the reverse operation. 
 
 
-
+\pagebreak
 % ------------------------------------------------
 \section{Question 6}
 
