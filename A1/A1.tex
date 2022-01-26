@@ -21,7 +21,7 @@ $Q = 2^\Gamma = \{\phi, \{l_1\}, \{l_2\}, ....... \Gamma\}$\\
 $\Sigma = \Gamma$\\
 $q_0 = \phi$\\
 $F = Q \setminus  \Gamma$\\
-$\delta: Q \times \Sigma \times Q$ defined as follows:\\
+$\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
 
 \begin{equation}
     \delta (q,a) = 
@@ -29,7 +29,7 @@ $\delta: Q \times \Sigma \times Q$ defined as follows:\\
       q & if $a \in q$ \\
       q \bigcup \{a\}        & otherwise
     \end{cases*}
-  \end{equation}
+\end{equation}
 
 \textbf{Claim: } N accepts only those strings that don't have all the characters from $\Gamma $.\\
 
@@ -44,10 +44,10 @@ $\delta: Q \times \Sigma \times Q$ defined as follows:\\
         Also, final state of N = $\bigcup \{x_i\} = \Gamma \notin $ F.\\
         Hence, N does not accepts the string s.
         \pagebreak
-        \item Case 1: $\bigcup \{x_i\} \subset \Gamma$ \\
+        \item Case 2: $\bigcup \{x_i\} \subset \Gamma$ \\
         This means that string s does not contains all the alphabets from $\Gamma $.\\
         Also, final state of N (let $p_k$) = $\bigcup \{x_i\} \neq \Gamma => p_k \in $ F.\\
-        Hence, N does accepts the string s.\\
+        Hence, N accepts the string s.\\
     \end{enumerate}
 
 Hence proved that N accepts only those strings that don't have all the characters from $\Gamma $.\\
@@ -134,8 +134,74 @@ Hence we have proved that regular languages are closed under the reverse operati
 % ------------------------------------------------
 \section{Question 6}
 
+\textbf{Let \boldsymbol{$\Sigma$} and \boldsymbol{$\Gamma$} be two finite alphabets. A function \boldsymbol{$f : \Sigma^{*} \to \Gamma^{*}$ }is called a homomorphism if
+for all x,y \boldsymbol{$ \in \Sigma^{*}, f(x . y) = f(x) . f(y)$}. Observe that if f is a string homomorphism, then
+\boldsymbol{$f(\epsilon) =\epsilon$}, and the values of $f(a)$ for all a \boldsymbol{$\in \Sigma$} completely determines \boldsymbol{$f$}. Prove that the class of
+regular languages is closed under homomorphisms.That is, prove that if L \boldsymbol{$\subseteq \Sigma^{*} $} is a regular
+language, then \boldsymbol{$f(L) = \{f(x) \in \Sigma^{*} | x \in L \}$} is regular. Try to informally describe how you
+will start with a DFA for L and get an NFA for f(L).
+}
 
+\begin{enumerate}
+    \item \boldsymbol{$f(\epsilon) =\epsilon$}
+    
+    $\forall x,y \in \Sigma^{*} f(x.y) = f(x).f(y)$ (by defination of homomorphism)\\
+    take y = $\epsilon$\\
+    $=> \forall x \in \Sigma^{*} f(x.\epsilon) = f(x).f(\epsilon)$\\
+    $=> \forall x \in \Sigma^{*} f(x) = f(x).f(\epsilon)$\\
+    but, any alphabet that upon concatenation with other alphabet generate same alphabet is $\epsilon$ only\\
+    $=> f(\epsilon) =\epsilon$\\
 
+    This, is a property of homomorphism that it maps identity elements (of the operation upon which homomorphism property is satisfyied). Here identity element with respect to an operation (say oper) is any element of the set that maps
+    every element to itself upon oper.
+    In our case, since $a.\epsilon = a \forall a \in \Sigma^{*} $ as well as $a.\epsilon = a \forall a \in \Gamma^{*} $, Hence $\epsilon$ is the identity element of both $\Sigma$ and $\Gamma$
+
+    \item \textbf{values of $f(a)$ for all a \boldsymbol{$\in \Sigma$} completely determines \boldsymbol{$f$}}\\
+    
+    \textbf{Given: } $f(a) \text{ } \forall \text{ }  a \in \Sigma$\\
+    \textbf{To find: } $f(x) \text{ } \forall \text{ }  x \in \Sigma^{*}$\\
+
+    Let x $\in \Sigma^{*}$\\
+    $=> x = a_1 a_2 ..... a_k$ where $a_i \in \Sigma $ and $k \geq 0$\\
+    $=> f(x) = f(a_1 a_2 ..... a_k)$\\
+    $=> f(x) = f(a_1)f(a_2)....f(a_k)$\\
+    since, each $a_i \in \Sigma$ hence, they are known.\\
+    $=> f(a_1)f(a_2)....f(a_k)$ is known.\\
+    $=> f(x) $ is known.\\
+    Hence, we can determine $f(x) \forall x \in \Sigma^{*}$
+
+    \pagebreak
+    \item \textbf{Prove that the class of regular languages is closed under homomorphisms}
+
+    Let, L be a regular language L, to prove that regular language is closed under homomorphism it is sufficient to
+    show that for any homomorphism f, f(L) is also regular.\\
+    \textbf{Given:} A regular language L, A homomorphism f\\
+    \textbf{To Prove:} f(L) is also regular\\
+    \textbf{Proof:}
+
+    Since, L is a regular language, we can construct a DFA (say D) for L.\\
+    So, D = {$(Q, \Sigma, \delta, q_0 , F )$} such that, L(D) = L\\
+    First let me define a function $g: \Gamma \to \Sigma$ as follows:\\
+    $g(a) = \{ x | f(x) = a \} $\\
+
+    Now, Consider the NFA N = {$(Q, \Gamma, \delta', q_0 , F)$} where, \\
+    $\delta' \subseteq Q \times \Gamma \times Q$ defined as follows:\\
+    $ \delta' (q,a) = \{ \delta (q,x) | x \in g(a) \} $\\
+
+    Proving that L(N) = f(L) \\
+    Let, $x \in f(L) => x = f(a) $ where, $a \in L$\\
+    Let, $a = a_1 a_2..... a_k$\\
+    $=> x = f(a_1) f(a_2) ..... f(a_k)$ \\
+    Since, $a \in L = L(D) => \exists \{q_0, q_1,......,q_k\}$ where $d_i \in Q$ such that\\
+    $\delta (q_i,a_{i+1}) = q_{i+1} \forall i = 0,.....,k-1$ and $q_k \in F$\\
+    by defination of $\delta'$, $\delta' (q_i,f(a_{i+1})) = q_{i+1} \forall i = 0,.....,k-1$\\
+    also, $F' = F => q_k \in F'$\\
+    hence, N accepts x.\\
+    $=> $ N accepts every string x $\in f(L) $\\
+    similarly it can be shown that N rejects every string x' $ \notin f(L) $ (as run of N is parallel to D).\\
+    Hence L(N) = f(L).
+
+\end{enumerate}
 
 
 
