@@ -80,13 +80,18 @@ $q_0^{'}=s$ \\
 $\delta^{'}(q_1,a) = (q_2 \: | \: \delta(q_2,a)=q_1 \: and \: q_1,q_2 \in Q) \cup(s \: |\: q_1\in F\; and \; a=\epsilon)$  
 \end{center}
 \textbf{To Prove:} The language accepted by N is $A^R$.\\
-\textbf{Proof:} Now take any string $w_1 w_2....w_n$ from the language A. The path(path is state then alphabet taken then 
-next state reached) taken by this string to accept state in D would be $q_0,w_1,q_1,w_2,q_2.....q_n,w_n,f$ where $q_i\in Q$ 
-and $f\in F$. Now take the reverse of the string $w_n w_{n-1}....w_1$. There exist a path from start to accept state in N 
-as which is as follows $s,\epsilon,f,w_n,q_n,w_{n-1}.....q_1,w_1,q_0)$. We know that $q_0$ is an accept state of N.
-Thus we have got an NFA that has an accepting path for any string w in $A^R$, hence $A^R$ is regular. Hence we have proved 
-that regular languages are closed under the reverse operation. 
-
+\textbf{Proof:} Now take any string $w_1 w_2....w_n$ from the language A. The path(path is state then alphabet taken then
+ next state reached) taken by this string to accept state in D would be $q_0,w_1,q_1,w_2,q_2.....q_n,w_n,f$ where $q_i\in
+  Q$ and $f\in F$. Now take the reverse of the string $w_n w_{n-1}....w_1$. There exist a path from start to accept state 
+  in N as which is as follows $s,\epsilon,f,w_n,q_n,w_{n-1}.....q_1,w_1,q_0$. We know that $q_0$ is an accept state of N.
+  Thus we have got an NFA that has an accepting path for any string w in $A^R$.\\
+Now we have proved that for every string in A we have a accepting path in N. Now we can also similarly prove the reverse 
+direction too i.e. for every string w in $A^R$ we have accepting path in D for reverse of w. The proof of this goes as 
+follows:\\ Take any string $w_1 w_2....w_n$ from the language $A^R$. The pathtaken by this string to accept state in N 
+would be $s,\epsilon,f,w_1,q_n,w_2.....q_1,w_n,q_)$ where $q_i\in Q$ and $f\in F$. Now take the reverse of the string $w_n 
+w_{n-1}....w_1$. There exist a path from start to accept state in D as which is as follows $q_0,w_n,q_1,w_{n-1},q_2.....q_n,w_1,
+f$. We know that f is an accept state of D.Thus we have got an DFA that has an accepting path for any string w in A.\\
+Hence we have proved that regular languages are closed under the reverse operation. 
 
 
 
