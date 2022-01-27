@@ -56,18 +56,37 @@ Hence proved that N accepts only those strings that don't have all the character
 
 \item \textbf{Can you give an NFA with k states?}\\
 
-No, it is not possible to construct an NFA with k states that accepts the above languae. \\
-Proving by contradiction.\\
-Suppose $\exists $ an NFA N with k states, s.t. L(N) = L, where L is laguage of strings that don't have all the characters from $\Gamma $.\\
-Now, consider the string $s = l_1 l_2 ..... l_k$\\
-Clearly, $s \notin L$ (as s contains all characters from $\Gamma $).\\
-Let $p = \{p_0, p_1, .......p_k\}$ be the run of NFA on $s$.\\
-By pegionhole principle, $\exists p_i, p_j \in p $ such that $p_i = p_j \& i \neq j$\\
-$=> $ string $s $ and string $s' = l_1 l_2 .... l_i, l_{j+1}.....l_k$ will have same final state\\
-$=> $ N either accepts both $s,s'$ or neither of them.\\
-That is a contradiction, since $s \notin L$ but $s' \in L$\\
-Hence proved.
+Since the k is arbitrary and its range is not provided in question, I'm taking it to be $k \geq 0$.\\
+Proving that NFA with k states is not possible by contradiction.\\
+Suppose for every such Language there exists an NFA with k states, then it would also be for k = 2.\\
+So, let's try to construct one such NFA = {$(Q, \Sigma, \delta, q_0 , F )$} where,\\
+$Q = \{s, q\}$\\
+$\Sigma = \{l_1, l_2 \}$\\
+$q_0 = s$\\
+Now, $s \in F$ (since, $\epsilon $ has no characters from $\Sigma $).\\
+Also, string $l_1, l_2 \in $ L, $=> \delta(s,l_1) \bigcup F \neq \phi $ and $ \delta(s,l_2)  \bigcup F \neq \phi$.\\
+And possible values of $ \delta(s,l_1) $ and $ \delta(s,l_2)$ are $\phi, \{s\}, \{q\}, \{s,q\}$\\
+Clearly, they can't be $\phi$, also, $s \notin \delta(s,l_1) \bigcup \delta(s,l_2) $, as if that were the case then all the 
+strings will get accepted. \\
+So, either $ \delta(s,l_1) = \{q\}$ or $ \delta(s,l_2) = \{q\}$ making q an accepting state, that would make string $l_1l_2$ to get accepted 
+but $l_1l_2 \notin L$\\
+That is a contradiction.\\
 
+In fact, if multiple start states were allowed, then one could create a k state NFA $(Q, \Gamma, \delta, Q_0 , F )$ of above language, as follows:- \\
+$Q =  \{q_{l_1}, q_{l_2}, ....... q_{l_k}\}$\\
+$Q_0 = Q$ (all states are start states)\\
+$F = Q$ (all states are accepting states)\\
+$\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
+
+\begin{equation}
+    \delta (q_{l_i},a) = 
+    \begin{cases*}
+      \phi & if $a = l_i$ \\
+      q_{l_i} & O.W. \\
+    \end{cases*}
+\end{equation}
+
+Hence, at best we can create NFA with k+1 states having 1 start state (by creating a new start state s and making $\epsilon $ transitions from s to all other states and rest unchannges).\\
 \end{enumerate}
 
 \pagebreak
