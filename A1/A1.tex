@@ -16,6 +16,8 @@
 \textbf{Given an alphabet $\Gamma $ = $\{l_1,...,l_k\}$, construct an NFA that accepts strings that don't have
 all the characters from $\Gamma $. Can you give an NFA with k states?}\\
 
+\begin{enumerate}
+    \item \textbf{NFA Construction}\\
 Consider the NFA N = {$(Q, \Sigma, \delta, q_0 , F )$} where,\\
 $Q = 2^\Gamma = \{\phi, \{l_1\}, \{l_2\}, ....... \Gamma\}$\\
 $\Sigma = \Gamma$\\
@@ -51,6 +53,23 @@ $\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
     \end{enumerate}
 
 Hence proved that N accepts only those strings that don't have all the characters from $\Gamma $.\\
+
+\item \textbf{Can you give an NFA with k states?}\\
+
+No, it is not possible to construct an NFA with k states that accepts the above languae. \\
+Proving by contradiction.\\
+Suppose $\exists $ an NFA N with k states, s.t. L(N) = L, where L is laguage of strings that don't have all the characters from $\Gamma $.\\
+Now, consider the string $s = l_1 l_2 ..... l_k$\\
+Clearly, $s \notin L$ (as s contains all characters from $\Gamma $).\\
+Let $p = \{p_0, p_1, .......p_k\}$ be the run of NFA on $s$.\\
+By pegionhole principle, $\exists p_i, p_j \in p $ such that $p_i = p_j \& i \neq j$\\
+$=> $ string $s $ and string $s' = l_1 l_2 .... l_i, l_{j+1}.....l_k$ will have same final state\\
+$=> $ N either accepts both $s,s'$ or neither of them.\\
+That is a contradiction, since $s \notin L$ but $s' \in L$\\
+Hence proved.
+
+\end{enumerate}
+
 \pagebreak
 % -------------------------------------------------
 \section{Question 2}
@@ -116,7 +135,8 @@ So N is $(Q_1, \Sigma, \delta^{'}, q_0^{'} , F^{'} )$ such that
 &           \delta^{'}(q_1,a) = 
             \begin{cases*}
             q_2 & if $q_1 \in Q$  and  $\delta(q_2,a)=q_1$\\
-            F       & if $ q_1= s$ and $a=\epsilon$
+            F       & if $ q_1= s$ and $a=\epsilon$\\
+            \phi & O.W.
             \end{cases*}\\
 &           q_0^{'}=s \\
 \end{split}
@@ -155,7 +175,7 @@ will start with a DFA for L and get an NFA for f(L).
     take y = $\epsilon$\\
     $=> \forall x \in \Sigma^{*} f(x.\epsilon) = f(x).f(\epsilon)$\\
     $=> \forall x \in \Sigma^{*} f(x) = f(x).f(\epsilon)$\\
-    but, any alphabet that upon concatenation with other alphabet generate same alphabet is $\epsilon$ only\\
+    but, only $f(\epsilon) \in \Gamma^{*}$ that upon concatenation with any string generate same string is $\epsilon$ only\\
     $=> f(\epsilon) =\epsilon$\\
 
     This, is a property of homomorphism that it maps identity elements (of the operation upon which homomorphism property is satisfyied). Here identity element with respect to an operation (say oper) is any element of the set that maps
