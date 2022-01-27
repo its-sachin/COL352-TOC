@@ -64,7 +64,7 @@ $Q = \{s, q\}$\\
 $\Sigma = \{l_1, l_2 \}$\\
 $q_0 = s$\\
 Now, $s \in F$ (since, $\epsilon $ has no characters from $\Sigma $).\\
-Also, string $l_1, l_2 \in $ L, $=> \delta(s,l_1) \bigcup F \neq \phi $ and $ \delta(s,l_2)  \bigcup F \neq \phi$.\\
+Also, strings $l_1, l_2 \in $ L, $=> \delta(s,l_1) \bigcup F \neq \phi $ and $ \delta(s,l_2)  \bigcup F \neq \phi$.\\
 And possible values of $ \delta(s,l_1) $ and $ \delta(s,l_2)$ are $\phi, \{s\}, \{q\}, \{s,q\}$\\
 Clearly, they can't be $\phi$, also, $s \notin \delta(s,l_1) \bigcup \delta(s,l_2) $, as if that were the case then all the 
 strings will get accepted. \\
@@ -86,7 +86,7 @@ $\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
     \end{cases*}
 \end{equation}
 
-Hence, at best we can create NFA with k+1 states having 1 start state (by creating a new start state s and making $\epsilon $ transitions from s to all other states and rest unchannges).\\
+Hence, at best we can create NFA with k+1 states having 1 start state (by creating a new start state s and making $\epsilon $ transitions from s to all other states and rest unchannged).\\
 \end{enumerate}
 
 \pagebreak
