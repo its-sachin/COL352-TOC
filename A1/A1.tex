@@ -101,6 +101,23 @@ Now above two facts would imply that the all-NFA's recognize the class of regula
 % ------------------------------------------------
 \section{Question 3}
 
+Let our regular language L can be recognized by DFA as shown which takes input $l_1l_2...l_k$\\ \\
+\includegraphics[width=13cm]{1.jpeg}\\
+\textbf{method:}\\
+Lets reconstruct this DFA by adding a new transistion state between each exisiting state as shown.\\\\
+\includegraphics[width=13cm]{2.jpeg}\\
+This reconstructed NFA can recognise this input sting $l_1l_!l_2l_2...l_kl_k$ if $q_k$ is accepting state it still remains accepting state after recontructing.So,regular languages are closed under repeat operation.where repeat operation is\\
+$$repeat(L)=\{l_1l_!l_2l_2...l_kl_k|l_1l_2...l_k \in L \}$$
+\textbf{Proof of correctness:}\\
+Initially we took a input $l_1l_2...l_k \in L$ and we have a DFA with states $q_0,q_1,q_2....,q_k$
+such that qk is a final state and $\delta(q_i,l_{i+1})=q_{i+1}$.
+we reconstructed this DFA to run on $l_1l_!l_2l_2...l_kl_k$ with final state still in F and $\delta(q_{ii},l_{i+1})=q_{ii+1}$ and $\delta(q_{ii+1},l_{i+1})=q_{i+1i+1}$.\\
+\textbf{Proof by induction:(on number of transistions)}\\
+\textbf{Base case:}Then initial DFA will have two states and will recognize $l_1$.Then our new NFA should recognize $l_1L_1$.In our NFA we will have 3 states and final state still will be same as our old DFA. Hence our NFA will recognize  $l_1L_1$.\\
+\textbf{Hypothesis:}Let our NFA will recognise any language in the form $l_1l_!l_2l_2...l_kl_k \in $L 
+\textbf{induction:}now our NFA should recognize $l_1l_!l_2l_2...l_il_j$ \\
+Let $l_i$ != $l_j$ then this will lead to $\delta(q_{ii},l_{j})=\phi$.Hence when $l_i$ != $l_j$ will not recognize this implies our NFA will recognize any $l_1l_!l_2l_2...l_kl_k|l_1l_2...l_k \in L$\\
+Hence our regular language is closed under repeat operation.
 
 
 
