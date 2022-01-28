@@ -1,7 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1643363722 "e:/Semesters/Sem6/COL352/A1/A1.tex" "A1.pdf" "A1" 1643363722
-  "A1.aux" 1643363722 620 cfe9572979f098ffe1702ebc5b83455d "pdflatex"
-  "A1.tex" 1643363721 14449 6218a13d9d9e60e827504edd2d427c23 ""
+["pdflatex"] 1643369267 "e:/Semesters/Sem6/COL352/A1/A1.tex" "A1.pdf" "A1" 1643369268
+  "1.jpeg" 1643365728 36979 2eb768a7ca32662a805a13d98395fda0 ""
+  "2.jpeg" 1643365728 42199 6220a65a6578950851fa809376d69ebe ""
+  "A1.aux" 1643369267 620 6d23b0f9b4fc40206910d88a414fae4d "pdflatex"
+  "A1.tex" 1643369265 18031 2d034974299341289ff0ea26cda8e14a ""
   "C:/Users/sachi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1630834124 9715383 3f3e24fb5183498c2db26a3dc7a74ee7 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1643215815 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
@@ -74,8 +76,8 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1618240528 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1622550326 13197 df0fe9a9695763546b59e02a008447b3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1622550326 10214 00ce62e730d0cfe22b35e8f1c84949c7 ""
-  "e:/Semesters/Sem6/COL352/A1/A1.tex" 1643363721 14449 6218a13d9d9e60e827504edd2d427c23 ""
+  "e:/Semesters/Sem6/COL352/A1/A1.tex" 1643369265 18031 2d034974299341289ff0ea26cda8e14a ""
   (generated)
   "A1.pdf"
-  "A1.log"
   "A1.aux"
+  "A1.log"

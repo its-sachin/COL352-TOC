@@ -101,23 +101,70 @@ Now above two facts would imply that the all-NFA's recognize the class of regula
 % ------------------------------------------------
 \section{Question 3}
 
-Let our regular language L can be recognized by DFA as shown which takes input $l_1l_2...l_k$\\ \\
+Let our regular language L can be recognized by DFA D : $(Q, \Sigma, \delta, q_0 , F )$ \\
+
+Now, consider NFA N :  $(Q', \Sigma, \delta', q'_0 , F' )$ defined as follows:\\
+$Q' = Q \bigcup \{q_{xy} \forall x \in Q, y \in  \Sigma \}$\\
+$q'_0 = q_0$\\
+$F = F'$\\
+$\delta \subseteq Q' \times \Sigma \times Q'$ defined as follows:\\
+
+\begin{equation}
+    \delta' (q,a) = 
+    \begin{cases*}
+        \{q_{qa}\} & if $ q \in Q $ \\
+        \{\delta(x,a)\} & if $ q = q_{xa}$\\
+        \phi & O.W.
+    \end{cases*}
+\end{equation}
+ So, basically we've added new state for each transitions in old DFA D to construct NFA N.\\
+
+\textbf{Claim: L(D') = repeat(L)}\\
+Let the run of some string s = $l_1l_2...l_k \in L$ of D is as follows (since DFA has unique run for each string, so it will be unique):- \\ \\
 \includegraphics[width=13cm]{1.jpeg}\\
-\textbf{method:}\\
-Lets reconstruct this DFA by adding a new transistion state between each exisiting state as shown.\\\\
+Now, one of the run of string repeat(s) = $l_1l_1l_2l_2...l_kl_k \in repeat(L)$ in N that will be parallel to above run of D will be as follows:- \\\\
 \includegraphics[width=13cm]{2.jpeg}\\
-This reconstructed NFA can recognise this input sting $l_1l_!l_2l_2...l_kl_k$ if $q_k$ is accepting state it still remains accepting state after recontructing.So,regular languages are closed under repeat operation.where repeat operation is\\
-$$repeat(L)=\{l_1l_!l_2l_2...l_kl_k|l_1l_2...l_k \in L \}$$
+
+This reconstructed NFA can recognise this input sting $l_1l_!l_2l_2...l_kl_k$ if $q_k$ is accepting state it still remains accepting state after recontructing. So,regular languages are closed under repeat operation.where repeat operation is\\
+$$repeat(L)=\{l_1l_1l_2l_2...l_kl_k|l_1l_2...l_k \in L \}$$\\
+
+Let's prove this rigirously\\
+
+\pagebreak
+
 \textbf{Proof of correctness:}\\
-Initially we took a input $l_1l_2...l_k \in L$ and we have a DFA with states $q_0,q_1,q_2....,q_k$
-such that qk is a final state and $\delta(q_i,l_{i+1})=q_{i+1}$.
-we reconstructed this DFA to run on $l_1l_!l_2l_2...l_kl_k$ with final state still in F and $\delta(q_{ii},l_{i+1})=q_{ii+1}$ and $\delta(q_{ii+1},l_{i+1})=q_{i+1i+1}$.\\
-\textbf{Proof by induction:(on number of transistions)}\\
-\textbf{Base case:}Then initial DFA will have two states and will recognize $l_1$.Then our new NFA should recognize $l_1L_1$.In our NFA we will have 3 states and final state still will be same as our old DFA. Hence our NFA will recognize  $l_1L_1$.\\
-\textbf{Hypothesis:}Let our NFA will recognise any language in the form $l_1l_!l_2l_2...l_kl_k \in $L 
-\textbf{induction:}now our NFA should recognize $l_1l_!l_2l_2...l_il_j$ \\
-Let $l_i$ != $l_j$ then this will lead to $\delta(q_{ii},l_{j})=\phi$.Hence when $l_i$ != $l_j$ will not recognize this implies our NFA will recognize any $l_1l_!l_2l_2...l_kl_k|l_1l_2...l_k \in L$\\
-Hence our regular language is closed under repeat operation.
+Initially we took a string s = $l_1l_2...l_k \in L$ and we have run of s on D = $q_0,q_1,q_2....,q_k$
+such that $q_k \in F$ and $\delta(q_i,l_{i+1})=q_{i+1}$.\\
+
+Now, let's prove that L(N) = repeat(L) by induction.\\
+
+\textbf{Proof by induction:(on number of characters in string)}\\
+
+\textbf{Base case:} k = 0\\
+So, s = $\epsilon $, as both D and N start from sam start state $q_0$ as have same accepting state, if D accepts $\epsilon => q_0 \in F$ then N also accepts $\epsilon$ and also vice versa.\\
+Note that if $\epsilon \in L => \epsilon \in $repeart(L), as $\epsilon = \epsilon \epsilon$\\ 
+
+\textbf{I.H.:} Let $\forall k \leq n$ N accepts only string that are of the form $l_1l_1l_2l_2...l_kl_k : l_1l_2....l_k \in L$\\
+
+\textbf{I.S.:} Consider string s $\in \Sigma^*$ such that length of s = n+1 or n+2.
+    \begin{enumerate}
+        \item  $s \notin $ repeat(L)\\
+        $=> $ s = $l_1l_1...l_{i-1}l_{i-1}l_il_j.... : l_1....l_i \in L$ (note that $l_{i-1}$ can be $\epsilon$ also, in that case first character itself is not repeated. This proof will work for that 
+        case also)\\
+        $=> $ substring $l_1l_1...l_{i-1}l_{i-1} $ will get accepted (by I.H.) and also it would have only single run in N\\
+        $q_0 \xrightarrow{l_1} q_{0l_1} \xrightarrow{l_1} q_1 ....... \xrightarrow{l_{i-1}} q_{i-1}$ (as in our NFA, all transitions have $|\delta'(q,a)| \leq 1$).\\
+        $q_{i-1} \xrightarrow{l_i} = \delta'(q_{i-1},l_i) = q_{(i-1)l_i} \xrightarrow{l_i} = \phi$ (since $i \neq j$)\\
+        Hence rejected, that is correct as $s \notin $ repeat(L).
+
+        \item  $s \in $ repeat(L)\\
+        $=> $ s = $l_1l_1...l_nl_n : l_1....l_n \in L$\\
+        By I.H., substring $l_1l_1...l_{n-1}l_{n-1}$ will be accepted.\\
+        $=> q_0 \xrightarrow{l_1} q_{0l_1} \xrightarrow{l_1} q_1 ....... \xrightarrow{l_{n-1}} q_{n-1} \in F'$ 
+        $q_{n-1} \xrightarrow{l_n} = \delta'(q_{n-1},l_n) = q_{(n-1)l_n} \xrightarrow{l_n} = q_n \in F $ since $l_1l_2....l_k \in L$\\
+        as $F = F' => q_n \in F'$\\
+        Hence accepted, that is correct as $s \in $ repeat(L).
+    \end{enumerate}
+
 
 
 
