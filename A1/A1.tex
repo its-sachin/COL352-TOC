@@ -127,7 +127,20 @@ Now above two facts would imply that the all-NFA's recognize the class of regula
 \pagebreak
 % ------------------------------------------------
 \section{Question 4}
-
+Lets take two DFAs $D_1$=($Q_1$,$\Sigma$,$q_0$,$\delta_1$,$F_1$) and $D_2$=($Q_2$,$\Sigma$,$r_0$,$\delta_2$,$F_2$).\\
+\textbf{Idea:}\\
+Let L(d) is language recognized by dfa d.
+If two DFAs will recognise same DFAs implies L($D_1$) - L($D_2$) and L($D_2$) - L($D_1$) should be a null set else language recognized by two DFAs are different.\\
+\textbf{Algorithm:}\\
+For computing L($D_2$)-L($D_1$):\\
+\textbf{Step1(complementation)}:Generate another DFA $D_3$ which is complement of D2 i.e by reversing final states as non final states and vice-versa.Then $D_3$=($Q_2$,$\Sigma$,$r_0$,$\delta_2$,\\$Q_2$-$F_2$).\\
+\textbf{Step2(intersection)}:Generate another DFA $D_4$ by intersecting $D_1$ and $D_3$ i.e by first complementing both $D_1$ and $D_3$ then take union of this both DFAs and at last take complement of whole.\\
+\textbf{Step3(BFS)}:Perform BFS on start state of $D_4$ if it find any final state then return false else \\
+\textbf{Step4}:Repeat steps 1,2,3 for computing L($D_1$)-L($D_2$) if bfs in this also finds nothing then return true.\\
+\textbf{Proof of correctness:}\\
+\textbf{Claim1:}Let A,B be two DFAs then if both L(A)-L(B) and L(B)-L(A) are null then both DFAs can recognise same grammer\\
+\textbf{Proof by contradiction:}Lets atleast L(A)-L(B) or L(B)-L(A) is not null then there there exist a string in which will be in L(A) or L(B) implies which will only be detetected by their respective DFAs.\\
+\textbf{Time complexity:}Worst case Time complexity of this algorithm will be O($2^{|Q_1|+|Q_2|}$+no of transistions in $D_4$)
 
 
 
