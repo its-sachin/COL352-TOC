@@ -18,42 +18,33 @@
 all the characters from $\Gamma $. Can you give an NFA with k states?}\\
 
 \begin{enumerate}
-    \item \textbf{NFA Construction}\\
-Consider the NFA N = {$(Q, \Sigma, \delta, q_0 , F )$} where,\\
-$Q = 2^\Gamma = \{\phi, \{l_1\}, \{l_2\}, ....... \Gamma\}$\\
-$\Sigma = \Gamma$\\
-$q_0 = \phi$\\
-$F = Q \setminus  \Gamma$\\
+    \item \textbf{NFA construction: }\\
+Consider NFA N : $(Q, \Sigma, \delta, Q_0 , F )$ of given language, as follows:- \\
+$Q =  \{s, q_{l_1}, q_{l_2}, ....... q_{l_k}\}$\\
+$Q_0 = s$\\
+$\Sigma = \Gamma \bigcup \{\epsilon\}$\\
+$F = Q$ (all states are accepting states)\\
 $\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
 
 \begin{equation}
     \delta (q,a) = 
     \begin{cases*}
-      q & if $a \in q$ \\
-      q \bigcup \{a\}        & otherwise
+        \{q_{l_i}\} & if $ q = q_{l_i} \text{ } \& \text{ } a \neq l_i$ \\
+        \{q_{l_1}, q_{l_2} .... q_{l_k}\} & if $ q = s \text{ } \& \text{ }a = \epsilon$\\
+        \phi & O.W.
     \end{cases*}
 \end{equation}
 
-\textbf{Claim: } N accepts only those strings that don't have all the characters from $\Gamma $.\\
 
-\textbf{Proof: } \\
+\textbf{Proof of correcness: }\\
+From construction it is clear that NFA N is union of k NFA's (each state $q_{l_i}$ is considering one individual NFA $N_i$).\\
+Because except those $N_i$ we have one start state that has $\epsilon$ transitions to all $N_i$ (same construction of union done in lecture).\\
 
-    Let S = $x_1 x_2 ..... x_k$ be any arbitrary string, let's consider the run of s on N.\\
-    $\phi \xrightarrow{x_1} \{x_1\} \xrightarrow{x_1} \{x_1,x_2\} ....... \xrightarrow{x_k} \bigcup \{x_i\}$\\
-    NOTE: \{\} is a set in above expression, and $\bigcup \{x_i\}$ will contain single copy of each alphabet.\\
-    \begin{enumerate}
-        \item Case 1: $\bigcup \{x_i\} = \Gamma$ \\
-        This means that string s contains all the alphabets from $\Gamma $.\\
-        Also, final state of N = $\bigcup \{x_i\} = \Gamma \notin $ F.\\
-        Hence, N does not accepts the string s.
-        \pagebreak
-        \item Case 2: $\bigcup \{x_i\} \subset \Gamma$ \\
-        This means that string s does not contains all the alphabets from $\Gamma $.\\
-        Also, final state of N (let $p_k$) = $\bigcup \{x_i\} \neq \Gamma => p_k \in $ F.\\
-        Hence, N accepts the string s.\\
-    \end{enumerate}
-
-Hence proved that N accepts only those strings that don't have all the characters from $\Gamma $.\\
+\textbf{Claim: } Each $N_i$ accepts only those strings that don't have the characters $l_{i}$.\\
+It is easy to prove since there is only one state in $N_i$ and that too is accepting, so evey string will be accepting unless it has any character c such that $\delta(q_{l_i},c) = \phi$ and 
+for every i it is only one character $l_i$\\
+Hence proved that $\forall 1 \leq i \leq k : L(N_i) = (\Gamma \setminus {l_i})^{*} $\\
+$=> L(N) = \bigcup L(N_i) = \bigcup (\Gamma \setminus {l_i})^{*} = $ required language.\\
 
 \item \textbf{Can you give an NFA with k states?}\\
 
@@ -73,33 +64,10 @@ So, either $ \delta(s,l_1) = \{q\}$ or $ \delta(s,l_2) = \{q\}$ making q an acce
 but $l_1l_2 \notin L$\\
 That is a contradiction.\\
 
-\textbf{k+1 state NFA: }\\
-In fact, at best we can create NFA with k+1 states, NFA N $(Q, \Gamma, \delta, Q_0 , F )$ of above language, as follows:- \\
-$Q =  \{s, q_{l_1}, q_{l_2}, ....... q_{l_k}\}$\\
-$Q_0 = s$\\
-$F = Q$ (all states are accepting states)\\
-$\delta \subseteq Q \times \Sigma \times Q$ defined as follows:\\
-
-\begin{equation}
-    \delta (q,a) = 
-    \begin{cases*}
-      \{q_{l_i}\} & if $ q = q_{l_i} \text{ } \& \text{ } a \neq l_i$ \\
-      \{q_{l_1}, q_{l_2} .... q_{l_k}\} & if $ q = s \text{ } \& \text{ }a = \epsilon$\\
-      \phi & O.W.
-    \end{cases*}
-\end{equation}
-
-
-\textbf{Proof of correcness: }\\
-From construction it is clear that NFA N is union of k NFA's (each state $q_{l_i}$ is considering one individual NFA $N_i$).\\
-\textbf{Claim: } Each $N_i$ accepts only those strings that don't have the characters $l_{i}$.\\
-It is easy to prove since there is only state in NFA and that too is accepting, so evey string will be accepting unless it has any character c such that $\delta(q_{l_i},c) = \phi$ and 
-for every i it is only one character $l_i$\\
-Hence proved that $\forall 1 \leq i \leq k : L(N_i) = (\Gamma \setminus {l_i})^{*} $\\
-$=> L(N) = \bigcup L(N_i) = \bigcup (\Gamma \setminus {l_i})^{*} = $ required language.\\
-
+As we have provided a k+1 state NFA in previous part, that is the best we can do with respect to number of states if only single start state is allowed. \\
 If multiple start states are allowed then one can create an k-state NFA by removing start state s from above NFA and making all remainining k states 
 start state.
+
 \end{enumerate}
 
 \pagebreak
