@@ -181,15 +181,21 @@ Let L(d) is language recognized by dfa d.
 If two DFAs will recognise same DFAs implies L($D_1$) - L($D_2$) and L($D_2$) - L($D_1$) should be a null set else language recognized by two DFAs are different.\\
 \textbf{Algorithm:}\\
 For computing L($D_2$)-L($D_1$):\\
-\textbf{Step1(complementation)}:Generate another DFA $D_3$ which is complement of D2 i.e by reversing final states as non final states and vice-versa.Then $D_3$=($Q_2$,$\Sigma$,$r_0$,$\delta_2$,\\$Q_2$-$F_2$).\\
-\textbf{Step2(intersection)}:Generate another DFA $D_4$ by intersecting $D_1$ and $D_3$ i.e by first complementing both $D_1$ and $D_3$ then take union of this both DFAs and at last take complement of whole.\\
+\textbf{Step1(complementation)}:Generate another DFA $D_3$ which is complement of $D_2$ i.e by reversing final states as non final states and vice-versa.Then $D_3$=($Q_2$,$\Sigma$,$r_0$,$\delta_2$,\\$Q_2$-$F_2$).\\
+\textbf{Step2(intersection)}:Generate another DFA $D_4$ by intersecting $D_1$ and $D_3$. Now this can be done by making a new DFA with $|Q_1|*|Q_2|$ number of states. Now the states in this dfa are touple of the states 
+from the two original DFA's, first element from D1 and second from $d_3$. The start state is the touple $(s_1,s_2)$ where $s_1$ and $s_2$ are start states of $D_1$ and $D_3$
+ A transtion exist between a state $(p,q)$ to $(x,y)$ on alphabet a if in original DFAs p to x and q to y transitions existed on aphabet a. 
+All the touples which have either of the state as an accept state in the orginal DFA is an accept state in the new DFA.\\
 \textbf{Step3(BFS)}:Perform BFS on start state of $D_4$ if it find any final state then return false else \\
 \textbf{Step4}:Repeat steps 1,2,3 for computing L($D_1$)-L($D_2$) if bfs in this also finds nothing then return true.\\
 \textbf{Proof of correctness:}\\
-\textbf{Claim1:}Let A,B be two DFAs then if both L(A)-L(B) and L(B)-L(A) are null then both DFAs can recognise same grammer\\
-\textbf{Proof by contradiction:}Lets atleast L(A)-L(B) or L(B)-L(A) is not null then there there exist a string in which will be in L(A) or L(B) implies which will only be detetected by their respective DFAs.\\
-\textbf{Time complexity:}Worst case Time complexity of this algorithm will be O($2^{|Q_1|+|Q_2|}$+no of transistions in $D_4$)
-
+\textbf{Claim1:}Let A,B be two DFAs then if they recognise same language then the given algorithm would return true\\
+\textbf{Proof by contradiction:}
+Now we know that 2 language is same when both L(A)-L(B) and L(B)-L(A) are null. And when both the language is same then the DFA'a A and B recognise the same language.
+Lets say L(A)-L(B) is not null then there there exist a string in L(A) which will be in L(A) and not L(B).
+Now the DFA $D_4$ which we have created would accept it and hence by our algortihm false is returned. Now similary when L(B)-L(A) is not null false is retuned when doing BFS.
+So our alogorithm only return true when both L(A)-L(B) and L(B)-L(A) are null. Thus our algorithm is indeed correct.\\
+\textbf{Time complexity:}Worst case Time complexity of this algorithm will be O(${|Q_1|*|Q_2|}$+no of transistions in $D_4$)
 
 
 \pagebreak
