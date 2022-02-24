@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{graphicx}
+\title{COL352: Assignment 2}
+\author{Sachin 2019CS10722 }
+\date{February, 2022}
+
+\begin{document}
+
+\maketitle
+\section{Question 2}
+\textbf{The n-th Fibonacci number is defined as \boldsymbol{$F_1 = 1, F_2 = 1$}, and for all \boldsymbol{$n \geq 3$}, \boldsymbol{$F_n = F_{n-1} + F_{n-2}$} .Consider the language over \boldsymbol{$\Sigma = \{a\}$ $L_2 = \{a^m | m = F_n \}$} Is \boldsymbol{$L_2$} regular? Justify your answer.}\\
+\newline
+The given language is not regular and we will prove this using the pumping lemma. \\
+\textbf{To Prove:} $L_2$ is not regular.\\
+\textbf{Proof:} We will use the contrapositive of the pumming lemma here. So let k be the pumping length s.t. $k\geq 1$. Now we pick a fibonacci number $F_n\geq k$ and also $F_{n+1}-F_{n}>k$. Such a fibonacci number exists clearly because second condition basically comes to $F_{n-1}>k$. So we have to find a fibonacci number which is greater than k and the fibonacci just number before it is also grater than k. That is clearly possible since fibonacci is a fast growing series.\\
+Now  $k\geq 1$ , $a^{F_n}\in L_2$ and $|a^{F_n}|\geq k$ . Every break up of $a^{F_n}$ can be written as x=$a^r$,y=$a^s$,z=$a^t$ where r+s+t=k. We also know $|xy|\leq k$ and $y\neq \epsilon$ which would mean $s\neq0$ and $s\leq k$. Now consider i=2 . Clearly  $i\geq0$.
+We can pump up y to get $xy^2z$ which $a^{r+2*s+t}$=$a^{F_n+s}$. Now we can say that $F_n<F_n+s\leq F_n+k<F_{n+1}$.\\
+So we have shown that $F_n+s$ is not a fibonacci number so $xy^2z\notin L_2$ . Hence by the contrapositive of the pumping lemma $L_2$ is not a regular language. Hence Proved.
+
+
+\pagebreak
+
+\section{Question 6}
+\textbf{Let M = \boldsymbol{$(Q, \Sigma, q_0 , \delta, F )$} be a DFA and let h be a state of M called its “home”. A synchronizing
+sequence for M and h is a string \boldsymbol{$s\in \Sigma^{*}$} where \boldsymbol{$\delta(q,s)$} = h for every \boldsymbol{$q\in Q$}. Say that M
+is synchronizable if it has a synchronizing sequence for some state h. Prove that if M is a
+k-state synchronizable DFA, then it has a synchronizing sequence of length at most \boldsymbol{$q^3$} . Can you improve upon this bound?} \\
+\newline
+\textbf{Given:} We have a DFA M=$(Q, \Sigma, q_0 , \delta, F )$ which is synchronizable according to the definition given above. Also let us suppose k=$|Q|$ i.e. k is the number of states of the DFA. $h\inQ$ be the home state of M and $s\in\Sigma^{*}$\\ be the synchronizing sequence.\\ 
+\textbf{To Prove:} The upper bound of the synchronizing sequence is $k^3$.\\
+\textbf{Proof:} If we choose any two states $q_1\in Q$ and $q_2\in Q$ such that $q_1 \neq q_2$ then there must exist a sequence of alphabet lets call it $s^{'}$ that takes both $q_1$ and $q_2$ to the same state. So $\delta^{'}(q_1,s^{'})=\delta^{'}(q_2,s^{'})$. This holds because the DFA is synchronizable.\\
+Now the length of the smallest $s^{'}$ such that the above condition is met is at max k*(k-1). This can be proved through the piegon hole principle. Suppose the length of $s^{'}$ is greater than k*(k-1). But we know that size of set of pair of distinct states is k*(k-1). So that would mean that some pair of states is repeated i.e. $\delta^{'}(q_1,s_1s_2...s_i)$=a , $\delta^{'}(q_2,s_1s_2....s_i)$=b and $\delta^{'}(q_1,s_1s_2....s_j)$=a , $\delta^{'}(q_2,s_1s_2....s_j)=b$ where $j>i$ and $s^{'}$=$s_1s_2....s_n$. But since the states are repeated we can omit the alphabet between $s_i$ and $s_j$ and there would be no difference. But that is contradiction because because $s^{'}$ was of the least length. So that proves that length of the string $s^{'}$ is at most $k*(k-1)$. \\
+Now if we run $s^{'}$ we have found on all the states of Q then it would lead us to at most k-1 distinct states. This is true because of the way we constructed $s^{'}$ $q_1$ and $q_2$ would lead to same state. Now we will apply this process recursively for smaller number of states till the number of states reach 1. Let the state that was left be $h^{'}$ and the concatination of all the $s^{'}$ obtained  at each recursive step be $s^{''}$. \\
+We can say that $s=s^{''}$ and $h=h^{'}$ because the way we have constructed $s^{''}$ and $h^{'}$, every state will reach $h^{'}$ if applied $s^{''}$. So $s^{''}$ is the syncronizi g sequence and $h^{'}$ if the home state. \\
+Now length of all the  $s^{'}$ is at most k*(k-1) and we concat k-1 such  $s^{'}$ to get  $s^{''}$. So the length  $s^{''}$ is at most k*(k-1)*(k-1) which is less than $k^3$. So we have shown that $k^3$ is an upper bound for the length of synchronizing sequence for a k-state synchronizable DFA. A tighter bound to this is k*(k-1)*(k-1).
+\pagebreak
+
+
+
+
+
+\end{document}
