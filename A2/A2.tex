@@ -55,10 +55,17 @@ $=> p' $ is divisible by p, hence not prime and hence not in L\\
 The given language is not regular and we will prove this using the pumping lemma. \\
 \textbf{To Prove:} $L_2$ is not regular.\\
 \textbf{Proof:} We will use the contrapositive of the pumming lemma here. So let k be the pumping length s.t. $k\geq 1$. Now we pick a fibonacci number $F_n\geq k$ and also $F_{n+1}-F_{n}>k$. Such a fibonacci number exists clearly because second condition basically comes to $F_{n-1}>k$. So we have to find a fibonacci number which is greater than k and the fibonacci just number before it is also grater than k. That is clearly possible since fibonacci is a fast growing series.\\
-Now  $k\geq 1$ , $a^{F_n}\in L_2$ and $|a^{F_n}|\geq k$ . Every break up of $a^{F_n}$ can be written as x=$a^r$,y=$a^s$,z=$a^t$ where r+s+t=k. We also know $|xy|\leq k$ and $y\neq \epsilon$ which would mean $s\neq0$ and $s\leq k$. Now consider i=2 . Clearly  $i\geq0$.
-We can pump up y to get $xy^2z$ which $a^{r+2*s+t}$=$a^{F_n+s}$. Now we can say that $F_n<F_n+s\leq F_n+k<F_{n+1}$.\\
+Now,
+\[ k\geq 1 , a^{F_n}\in L_2 \ and \ |a^{F_n}|\geq k\] 
+Every break up of $a^{F_n}$ can be written as xyz :
+\[x=a^r,y=a^s,z=a^t\ where \ r+s+t=F_n\] 
+\[ Also, \ |xy|\leq k \ and \ y\neq \epsilon \implies  s\neq0 \ and \ s\leq k\ \ \ \ \ \ \ \  -(i)\]
+Now consider i=2 . Clearly  $i\geq0$.
+We can pump up y for i=2 to get:
+\[xy^2z = a^{r+2*s+t}\] 
+\[=> a^{F_n+s}\] 
+\[We \ know \ F_n<F_n+s\leq F_n+k<F_{n+1} \ \ \ \ \ - From\ (i)\]
 So we have shown that $F_n+s$ is not a fibonacci number so $xy^2z\notin L_2$ . Hence by the contrapositive of the pumping lemma $L_2$ is not a regular language. Hence Proved.
-
 
 \pagebreak
 
