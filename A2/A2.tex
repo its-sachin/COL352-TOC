@@ -181,7 +181,19 @@ Hence proved.
 
 
 \section{Question 5}
-
+We need to prove A does not accept w if and only if sets $W_i \subseteq Q$ such that given condition will hold.\\
+\textbf{Proof:}\\
+\textbf{1:Forward implication}
+\\Lets assume our 2-NFA A does not accept x then there exist a sequence that are subsets of S.\\
+Let our sets $W_i$ where $0<=i<=n+1$ be the all states $q \in Q$ such that for each i there is a set of states q when A is run on x i.e there exist a state in A till i when A is run on x.\\
+1st condition($S \subseteq W_0 $):If $q \in S $ that is set of states q is in start states  when A is run on x implies first sequence will be accepted (i=0).So set of all start states will be in first sequence  i.e $S \in W_0$\\
+2nd condition:If $u \in W_i$ implies A run on x till ith state seq i.e $q \in W_i$.Given $(v,R) \in \bigtriangleup(u,a_i))$  there is A is accepted for $a_i$ on x implies i+1 is also accepting seq and the new state $s_{i+1} \in q$ i.e $v \in W_{i+1}$
+\\
+4th condition($t \notin W_{n+1} $):Means $q \notin t$  \\
+proof by contradiction:
+If $q \in t $ implies on i = n+1 out sequence with states s is still being accepted implies whole string will be accepted i.e A accepts x.Which contradicts our assumption.\\
+\textbf{1:backward implication}\\
+proof by contradiction:Let A accept x implies  w runs n+1 times i.e i=n+1 ,$q \in t$ and $W_0,W_1.....W_n+1$ satisfies given conditions. Since A accepts x,$S \subseteq W_0$.Every forward state which accepts x will be in part of sequence $W_i$ for each ith state.So 2nd and 4th condtion will also satisfy.
 
 \pagebreak
 
