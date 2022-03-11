@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{graphicx}
+\title{COL352: Assignment 2}
+\author{Sachin 2019CS10722 \\
+        Saurabh Verma \\
+        Sriram Verma}
+\date{March, 2022}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Question 1}
+\textbf{We say that a context-free grammar G is self-referential if for some non-terminal symbol $X$ we have $X \to^* \alpha X \beta$, where $\alpha, \beta \neq \varepsilon$. Show that a CFG that is not self-referential is regular.}
+
+
+
+\pagebreak
+
+
+\section{Question 2}
+\textbf{Prove that the class of context-free languages is closed under intersection with regular languages. That is, prove that if $L_1$ is a context-free language and $L_2$ is a regular language, then $L_1 \cap L_2$
+is a context-free language. Do this by starting with a DF}
+
+
+
+\pagebreak
+
+
+\section{Question 3}
+\textbf{Given two languages $L, L'$, denote by 
+$$L||L' := \{x_1y_1x_2y_2 \dots x_ny_n \mid x_1x_2 \dots x_n \in L, y_1y_2\dots y_n \in L'\}$$
+Show that if $L$ is a CFL and $L'$ is regular, then $L || L'$ is a CFL by constructing a PDA for $L || L'$. Is $L || L'$ a CFL if both $L$ and $L'$ are CFLs? Justify your answer.}
+
+
+\pagebreak
+
+
+\section{Question 4}
+\textbf{For $A \subseteq \Sigma^*$, define 
+$$cycle(A) = \{yx \mid xy \in A\}$$
+For example if $A = \{aaabc\}$, then 
+$$cycle(A) = \{aaabc, aabca, abcaa, bcaaa, caaab\}$$
+Show that if $A$ is a CFL then so is $cycle(A)$}
+
+
+
+
+\pagebreak
+
+\section{Question 5}
+\textbf{Let $$A = \{wtw^R\mid w,t, \in \{0,1\}^* \text{ \ and \ } |w| = |t|\}$$ Show that $A$ is not a CFL. }
+
+
+
+
+\pagebreak
+
+
+\section{Question 6}
+\textbf{Prove the following stronger version of pumping lemma for CFLs: 
+If $A$ is a CFL, then there is a number $k$ where if $s$ is any string in $A$ of length at least $k$ then $s$ may be divided into five pieces $s = uvxyz$, satisfying the conditions:
+\begin{enumerate}
+    \item for each $i\geq 0$, $uv^ixy^iz \in A$
+    \item $v \neq \varepsilon$, and $y \neq \varepsilon$, and
+    \item $|vxy| \leq k$.
+\end{enumerate}}
+
+
+
+\pagebreak
+
+
+\section{Question 7}
+\textbf{Give an example of a language that is not a CFL but nevertheless acts like a CFL in the pumping lemma for CFL (Recall we saw such an example in class while studying pumping lemma for regular languages). }
+
+
+
+\pagebreak
+
+
+\end{document}
