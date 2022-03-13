@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \title{COL352: Assignment 2}
 \author{Sachin 2019CS10722 \\
-        Saurabh Verma \\
+        Saurabh Verma 2019CS50129\\
         Sriram Verma}
 \date{March, 2022}
 
@@ -24,11 +24,23 @@
 
 
 \section{Question 2}
-\textbf{Prove that the class of context-free languages is closed under intersection with regular languages. That is, prove that if $L_1$ is a context-free language and $L_2$ is a regular language, then $L_1 \cap L_2$
-is a context-free language. Do this by starting with a DF}
-
-
-
+\textbf{Prove that the class of context-free languages is closed under intersection with regular languages. That is, prove that if \boldsymbol{$L_1$} is a context-free language and \boldsymbol{$L_2$} is a regular language, then \boldsymbol{$L_1 \cap L_2$}
+is a context-free language. Do this by starting with a DFA}\\
+\newline
+Let us suppose there is a CFL L and a regular langauage R. The pushdown automata that accepts L be P=$(S_1,\Sigma,\Gamma,\delta_1,s_1,F_1)$ and the DFA accepting R be D=$(S_2,\Sigma,\delta_2,s_2,F_2)$. Now we have to show that the language $L\cap R$ is CFL. To show this it is enough to provide a PDA that accepts it. So we will construct such a PDA to prove that  $L\cap R$ is CFL. \\
+\textbf{To Prove:} $L\cap R$ is CFL. \\
+\textbf{Proof:} We will the above hypothesis by construction. The main idea behind the construction of the PDA is that we will run both the original PDA P for L and the DFA D in parallel on the input string and will only accept when the we reach an accepting state both in P and D. The construction of the PDA is described below:\\
+\textbf{Construction:} Let the PDA which accepts $L\cap R$ be M=$(S,\Sigma,\Gamma,\delta,(s_1,s_2),F)$. Here S is $S_1 * S_2$ and F is $F_1 *F_2$. The transition function $\delta$ is described as follow: \\
+For all the transitions $((p_1,a,\alpha),(p_2,\beta)) \in \delta_1$  and $(q_1,a,q_2) \in \delta_2$ add the transition $(((p_1,q_1),a,\alpha),((p_2,q_2),\beta))$ in $\delta$.\\
+Also, for all the transitions $((p_1,\epsilon,\alpha),(p_2,\beta)) \in \delta_1$  and $\forall q \in S_2$ add the transition $(((p_1,q),a,\alpha),((p_2,q),\beta))$ in $\delta$.\\
+Here $p_1,p_2 \in S_1$  $q_1,q_2 \in S_2$  $a \in \Sigma$  $\alpha , \beta \in \Gamma$\\
+The accepting condition is that the final state reached after reading the input must belong to F.\\
+Now our claim is that PDA M exactly recognises every string that is in $L\cap R$. \\
+\textbf{Claim:} The PDA M constructed above exactly recognises strings in $L\cap R$. \\
+\textbf{Proof:} We will have to show two things first that every string in $L\cap R$ is accepted by M. Lets prove this. Choose any string w$\in L\cap R$. Then its run on the DFA D would be something like $s_2,q1......q_k$ where $q_k \in F_2$, also w would take the PDA M from start configuration($s_1$) to an accepting configuration($q_{k^{'}}$) in some steps. By the way we have constructed the PDA M the computions of M and D will happen in parallel. So (s1,s2) is the start configuration of the PDA. First state in the tuple denotes the state that would have been in the PDA P and second state denotes the state that would have been in the DFA D after reading input upto some point. So when the PDA gets to wun on w. It would take M from from (s1,s2) to $(q_k,q_{k^{'}})$. Now this is an accepting configuration in M by the way we defined F$(F_1 * F_2)$. So all the string  w$\in L\cap R$ are accepted by M.\\
+Also we have to prove that all the strings say w that are accepted by M should also be present in $ L\cap R$. We will accept w if it takes PDA M from $(s_1,s_2)$ to $(q_1,q_2)$ , $q_1 \in F_1$ and $q_2 \in F_2$. Also we have showed that M is parallely running P and D where first state in the tuple means the state reached in P and second state means the state reached in D after reading the input uptill that point. So after reading  w if the M is in state $(q_1,q_2)$, it would mean that after reading w P would have been in $q_1$ and D would be in $q_2$. $q_1 \in F_1$, so $w \in L$ also $q_2 \in F_2$ so $w \in R$ which implies $w \in L \cap R$.\\
+\newline
+Thus we have successfully constructed a PDA M which accepts $L \cap M$. Thus CFL's are closed under intersection with regular languages. Hence proved. \\
 \pagebreak
 
 
