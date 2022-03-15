@@ -45,9 +45,30 @@ Thus we have successfully constructed a PDA M which accepts $L \cap M$. Thus CFL
 
 
 \section{Question 3}
-\textbf{Given two languages $L, L'$, denote by 
-$$L||L' := \{x_1y_1x_2y_2 \dots x_ny_n \mid x_1x_2 \dots x_n \in L, y_1y_2\dots y_n \in L'\}$$
-Show that if $L$ is a CFL and $L'$ is regular, then $L || L'$ is a CFL by constructing a PDA for $L || L'$. Is $L || L'$ a CFL if both $L$ and $L'$ are CFLs? Justify your answer.}
+\textbf{Given two languages $L, L'$, denote by $$L||L' := \{x_1y_1x_2y_2 \dots x_ny_n \mid x_1x_2 \dots x_n \in L, y_1y_2\dots y_n \in L'\}$$ Show that if \boldsymbol{$L$} is a CFL and $L'$ is regular, then \boldsymbol{$L || L'$} is a CFL by constructing a PDA for \boldsymbol{$L || L'$}. Is \boldsymbol{$L || L'$} a CFL if both \boldsymbol{$L$} and \boldsymbol{$L'$} are CFLs? Justify your answer.}\\
+\newline 
+For the first part we have to show that T=$L||L'$ is a CFL if L is CFL and $L'$ is regular. Since L is CFL we are given a PDA P=$(S_1,\Sigma,\Gamma,\delta_1,s_1,F_1)$ which recognizes it. Also we have a DFA D=$(S_2,\Sigma,\delta_2,s_2,F_2)$ which recognises $L'$. These are the things given to us.\\
+\textbf{To Prove:} T is CFL.\\
+\textbf{Proof Idea:} To show that T is CFL we would have to construct a PDA say R which accepts it. Now the main idea behind the working of this machine is that after reading alphabet of the input tape it would guess whether the input came from L or $L'$ and would transition accordingly. Since PDA's can be non deterministic this construction would be fine. The specific construction of R is given as follows.\\
+\textbf{Construction:} R=$(S,\Sigma,\Gamma,\delta,s,F)$. Here S is  $S_1 * S_2$ , F= $F_1 * F_2$. The transition function $\delta$ is described as below\\
+$\delta((p_1 ,q_1),a,\alpha)$ would contain $((p_2,q_1),\beta)$ if $\delta_1(p_1,a,\alpha)$ contained $(p_2,\beta)$.\\
+$\delta((p_1 ,q_1),a,\alpha)$ would contain $((p_1,q_2),\alpha)$ if $\delta_2(q_1,a)$=$\{q_2\}$.\\
+Here $p_1,p_2 \in S_1$  $q_1,q_2 \in S_2$  $a \in \Sigma$  $\alpha , \beta \in \Gamma$\\
+The accepting condition is that the final state reached after reading the input must belong to F.\\
+Now our claim is that PDA R exactly recognises every string that belongs to T. \\
+\textbf{Claim:} R recognises the language T.\\
+\textbf{Proof:}\\
+\\
+\newline
+Now let us see the second part of the question. Is $L||L'$ a CFL if both L and $L'$ are
+CFLs? We will show that $L|| L'$ is not a CFL if L and $L'$ are CFls. \\
+\textbf{To Prove:} $L|| L'$ is not a CFL if L and $L'$ are CFLs. \\
+\textbf{Proof:} Giving a counter example will show that its not the case. Let us take two context free language and then we will show that $L || L'$ is not a CFL. L=$\{a^nb^n \ | \ n \geq 0\}$ . CFG for L is G=$(\{S\},\{a,b\},\{S \rightarrow aSb \ | \ \epsilon\},S)$. Thus L is CFL. Let $ L'=\{a^nb^{3n} \ | \ n \geq 0\}$ CFG for $L'$ is $G' =(\{S\},\{0,1\},\{S \rightarrow 0S111 \ | \ \epsilon\},S)$. Thus $L'$ is CFL.\\
+Let us take the length of the string 4k where $k \geq 0$ ( Thats the length of the string nedeed because $L'$ contains string of the multiple of 4 and for $L || L'$ length of string of L and $L'$ must be same). So string in L is of the form $a^{2k}b^{2k}$ and string in $L' $ is of the form $0^{k}1^{3k}$. Hence we see $L || L'$ is $(a0)^k (a1)^k (b1)^{2k}$. Now our proof boils down to showing that $(a0)^k (a1)^k (b1)^{2k}$ is not CFL.\\
+\textbf{Claim:} T=$(a0)^k (a1)^k (b1)^{2k}$ is not CFL.\\
+\textbf{Proof:} We will use pumping lemma for CFL's. Let us consider the langauge is CFL. . Let p be the pumping length. Consider z=$(a0)^p (a1)^p (b1)^{2p} \in T$. Since $|z| > p$, there are u, v, w, x, y such that z = uvwxy, $|vwx| \leq p$, $|vx| > 0$ and $ uv^{i}wx^{i}y \in L$ for all $i \geq 0$. Since $|vwx| \leq p$ vwx would either contain a0,a1,b1 if vwx lies entirely in one of the 3 partitions else it could contain either a01,ab1 if vwx spans two partitions. In all these cases vwx will never contain all the four non-terminal symbols. Hence for every split if we pump up there would be imbalance in ateast one of the symbols. Hence the given language is not a CFL. \\
+\newline
+Since we have given a counter example in which the $L||L'$ is not a CFL given L and $L'$ are CFL we have successfully proved the hypothesis. 
 
 
 \pagebreak
