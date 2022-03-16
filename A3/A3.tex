@@ -22,7 +22,6 @@
 
 \pagebreak
 
-
 \section{Question 2}
 \textbf{Prove that the class of context-free languages is closed under intersection with regular languages. That is, prove that if \boldsymbol{$L_1$} is a context-free language and \boldsymbol{$L_2$} is a regular language, then \boldsymbol{$L_1 \cap L_2$}
 is a context-free language. Do this by starting with a DFA}\\
@@ -78,9 +77,53 @@ Now we have constructed the grammar $M^{'}$. Whats left is to show that L($M{'}$
 \pagebreak
 
 \section{Question 5}
-\textbf{Let $$A = \{wtw^R\mid w,t, \in \{0,1\}^* \text{ \ and \ } |w| = |t|\}$$ Show that $A$ is not a CFL. }
+\textbf{Let $$A = \{wtw^R\mid w,t, \in \{0,1\}^* \text{ \ and \ } |w| = |t|\}$$ Show that $A$ is not a CFL. }\\
 
+We will prove that A is not CFL by contrapositive of pumping lemma. i.e. we need to show the following:- \\
+$\forall p \geq 0$ \\
+$\exists s \in A : |s| \geq p $ \\
+$\forall uvxyz = s : |vy| > 0, |vxy| \leq p$\\
+$\exists i : uv^ixy^iz \notin A$\\
 
+Let $s = 0^n 1^{\frac{n}{2}} 0^{\frac{n}{2}} 0^n$ ($w = w^R = 0^n, t = 1^{\frac{n}{2}} 0^{\frac{n}{2}}, n = $ any even number more than p)\\
+Now, lets divide s in 3 parts = wab, where a = $1^{\frac{n}{2}}$ and b = $0^{\frac{n}{2}} 0^n$\\
+Considering all partitions of s = uvxyz such that $|vy| > 0, |vxy| \leq p \leq n$\\
+\begin{enumerate}
+    \item \textbf{Case 1:} $vxy \subseteq w $ \\
+    Considering $s' = uxz$ i.e. i = 0\\
+    For s' to be in A, its should be divided into 3 halves = w't'd' of equal length such that first and third are reverse.\\ 
+    Since, we have removed characters from w only, w' will have all the characters of w left after removal of v,y and also some 1's 
+    from t for it to have same length as other subparts of equal length (see fig).\\
+    Hence, $1 \in w'$, but $d' \subset w^R = 0^n => 1 \notin d' => d' \neq w'^R$\\
+    Hence, $s' \notin A$\\
+    
+    \item \textbf{Case 2:} $vxy \subseteq b $ \\
+    Considering $s' = uv^2xy^2z$ i.e. i = 2\\
+    Let, $|s| = l, |s'| = l', l' < l$\\
+    $|w| = \frac{l}{3} < \frac{l'}{3}$\\
+    $=> w \subset w' => w' $ will overflow towards t $=> 1 \in w'$\\
+    But, $d' \subset w^R $ (after pumping ) that only has 0 (see fig)\\
+    $=> d' \neq w'^R$\\
+    Hence, $s' \notin A$\\
+
+    \item \textbf{Case 3:} $vxy \bigcap a \neq \phi$\\
+    
+    \begin{enumerate}
+        \item $w \bigcup vxy = \phi$\\
+        Considering $s' = uv^2xy^2z$ i.e. i = 2\\
+        This case is similar to case 2, as length of string is increased but w remains unchanged, hence w'[1:n] = w = $0^n$ and w'[n+1] = 1.
+        But $(n+1)^{th}$ of d' from last = last bit of t = 0.
+        $=> d' \neq w'^R$\\
+        Hence, $s' \notin A$\\
+
+        \item $w \bigcup vxy \neq \phi$\\
+        Considering $s' = uxz$ i.e. i = 0\\
+        This case is similar to case 1, as length of string is decreased (all from w). Hence, $1 \in w'$, but $1 \notin d'$ (from case 1) $ => d' \neq w'^R$\\
+        Hence, $s' \notin A$\\
+    \end{enumerate}
+\end{enumerate}
+
+Hence A is not CFL.
 
 
 \pagebreak
@@ -103,8 +146,36 @@ If $A$ is a CFL, then there is a number $k$ where if $s$ is any string in $A$ of
 \section{Question 7}
 \textbf{Give an example of a language that is not a CFL but nevertheless acts like a CFL in the pumping lemma for CFL (Recall we saw such an example in class while studying pumping lemma for regular languages). }
 
+Consider the following languages:-\\
+\begin{enumerate}
+    \item $L_1 = ab^nc^nd^n$\\
+        \textbf{Claim: }$L_1$ is not CFL\\
+        \textbf{Proof: }Suppose $L_1$ is CFL, consider the language $L' = L_1 \bigcap b^*c^*d^* = b^nc^nd^n$\\
+        Then, L' would also be regular since it is intersection of a CFL and a regular language (proved in ques 2 that intersection
+        of regular langauage and CFL is CFL). But it is proved in class that L' is not a CFL. 
+        Hence by contradiction $L_1$ is not CFL. 
+    \item $L_2 = a^{k_1}b^{k_2}c^{k_3}d^{k_4} : k_1 \neq 1$\\
+        $L_2$ is CFL because it is union of 2 regular languages : $b^*c^*d^* \bigcup a^2a^*b^*c^*d^*$ that is regular and all regular languages are CFL.
+    \item $L_3 = L_1 \bigcup L_2$ \\
+        $L_3$ is not a CFL as $L_3 \bigcap ab^*c^*d^* = L_1$ that is not a CFL and if $L_3$ were CFL, it should have been CFL by closure of union on CFL.
+\end{enumerate}
 
 
+Now, lets try to apply pumping lemma on $L_3$.\\
+Let $p = 2$\\
+Consider $\forall s \in L_3$\\
+There are only 2 choices, either s is in $L_1$ or $L_2$ (as both have no intersection). Lets consider both of the cases seperately.\\
+\begin{enumerate}
+    \item $s \in L_1$\\
+    Consider the partition of s = uvxyz, where $u = v = x = \epsilon, y = a, z = b^nc^nd^n (n > 0 as |s| \geq 2)$ \\
+    Now, $\forall i \geq 0 : s' = uv^ixy^iz = a^ib^nc^nd^n$\\
+    If i = 1 then $s'=s \in L_1 => s' \in L_3$ otherwise $s' $ is of the form  $a^{k_1}b^{k_2}c^{k_3}d^{k_4} : k_1 \neq 1$ i.e. $s' \in L_2 => S' \in L_3$\\
+    $=> \forall i \geq 0 s' \in L_3$\\
+    Hence $L_3$  satisfies pumping lemma.
+    \item $s \in L_2$ \\
+    This case is simple as $L_2$ is CFL, it should satisfy pupming lemma. Hence we are done.
+\end{enumerate}
+Hence provided an NCFL that satisfies pumping lemma.
 \pagebreak
 
 
