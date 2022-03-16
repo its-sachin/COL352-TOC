@@ -4,6 +4,7 @@
 \usepackage{mathtools}
 \usepackage{bm}
 \usepackage{graphicx}
+\usepackage{float}
 \title{COL352: Assignment 2}
 \author{Sachin 2019CS10722 \\
         Saurabh Verma 2019CS50129\\
@@ -111,19 +112,33 @@ Now, lets divide s in 3 parts = wab, where a = $1^{\frac{n}{2}}$ and b = $0^{\fr
 Considering all partitions of s = uvxyz such that $|vy| > 0, |vxy| \leq p \leq n$\\
 \begin{enumerate}
     \item \textbf{Case 1:} $vxy \subseteq w $ \\
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=6cm]{1.jpg}
+        \caption{Case 1}
+    \end{figure}
+
     Considering $s' = uxz$ i.e. i = 0\\
     For s' to be in A, its should be divided into 3 halves = w't'd' of equal length such that first and third are reverse.\\ 
     Since, we have removed characters from w only, w' will have all the characters of w left after removal of v,y and also some 1's 
-    from t for it to have same length as other subparts of equal length (see fig).\\
+    from t for it to have same length as other subparts of equal length (see fig 1).\\
     Hence, $1 \in w'$, but $d' \subset w^R = 0^n => 1 \notin d' => d' \neq w'^R$\\
     Hence, $s' \notin A$\\
     
     \item \textbf{Case 2:} $vxy \subseteq b $ \\
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=6cm]{2.jpg}
+        \caption{Case 2}
+    \end{figure}
+
     Considering $s' = uv^2xy^2z$ i.e. i = 2\\
     Let, $|s| = l, |s'| = l', l' < l$\\
     $|w| = \frac{l}{3} < \frac{l'}{3}$\\
     $=> w \subset w' => w' $ will overflow towards t $=> 1 \in w'$\\
-    But, $d' \subset w^R $ (after pumping ) that only has 0 (see fig)\\
+    But, $d' \subset w^R $ (after pumping ) that only has 0 (see fig 2)\\
     $=> d' \neq w'^R$\\
     Hence, $s' \notin A$\\
 

@@ -1,7 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1647420195 "e:/Semesters/Sem6/COL352/A3/A3.tex" "A3.pdf" "A3" 1647420196
-  "A3.aux" 1647420196 718 1c2acb75e3dbef6201257d0cca6949e0 "pdflatex"
-  "A3.tex" 1647420193 11552 157836197ab2b35dc9c0fa053c2472ed ""
+["pdflatex"] 1647420708 "e:/Semesters/Sem6/COL352/A3/A3.tex" "A3.pdf" "A3" 1647420709
+  "1.jpg" 1647420408 4342156 691874d810bf761dfa09989402540778 ""
+  "2.jpg" 1647420404 4372413 75c7f5f6176942e751adcd5400579385 ""
+  "A3.aux" 1647420709 938 f63043952121e9aa4c968e53630d5fe5 "pdflatex"
+  "A3.tex" 1647420707 15405 49f21def8230848d788cc0fd911b79b7 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1630836279 11548 90f32ca402142a3a5a46501564b29aef ""
   "C:/Users/sachi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1630834124 9715383 3f3e24fb5183498c2db26a3dc7a74ee7 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1643215815 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
@@ -64,6 +66,7 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/base/inputenc.sty" 1623741700 5049 969aec05d5f39c43f8005910498fcf90 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo" 1623741700 8448 05e1c6a8fc5db344ed9d7aeb299acbce ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
+  "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/float/float.sty" 1469023953 6916 16d2656a1984957e674b149555f1ea1d ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/graphics.cfg" 1465894292 1224 978390e9c2234eab29404bc21b268d1e ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/graphics-def/pdftex.def" 1622562294 19103 48d29b6e2a64cb717117ef65f107b404 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/graphics/graphics.sty" 1623003325 18399 7e40f80366dffb22c0e7b70517db5cb4 ""
@@ -75,8 +78,8 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1618240528 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1622550326 13197 df0fe9a9695763546b59e02a008447b3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1622550326 10214 00ce62e730d0cfe22b35e8f1c84949c7 ""
-  "e:/Semesters/Sem6/COL352/A3/A3.tex" 1647420193 11552 157836197ab2b35dc9c0fa053c2472ed ""
+  "e:/Semesters/Sem6/COL352/A3/A3.tex" 1647420707 15405 49f21def8230848d788cc0fd911b79b7 ""
   (generated)
+  "A3.pdf"
   "A3.log"
   "A3.aux"
-  "A3.pdf"
