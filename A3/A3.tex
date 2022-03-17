@@ -5,6 +5,9 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{float}
+
+\usepackage{rotating}
+
 \title{COL352: Assignment 2}
 \author{Sachin 2019CS10722 \\
         Saurabh Verma 2019CS50129\\
@@ -96,21 +99,83 @@ For example if \boldsymbol{$A = \{aaabc\}$}, then
 \boldsymbol{$cycle(A) = \{aaabc, aabca, abcaa, bcaaa, caaab\}$}
 Show that if \boldsymbol{$A$} is a CFL then so is \boldsymbol{$cycle(A)$}} \\
 \\
-Let us suppose that we do have a CFG M=(V,T,P,S) for the langauge A in chomsky normal form. We know for a fact that since A is CFL it will have a CSG. Now to prove that cycle(A) is also a CFL. So we will construct a CFG for cycle(A) that would show that cycle(A) is CFL. \\
+Let us suppose that we do have a CFG G=(V,T,P,S) for the langauge A in chomsky normal form. We know for a fact that since A is CFL it will have a CFG. Now to prove that cycle(A) is also a CFL. So we will construct a CFG for cycle(A) that would show that cycle(A) is CFL. \\
 \textbf{To Prove:} Cycle(A) is CFL.\\
-\textbf{Proof Idea:} Let us consider any string w in language A of the form $x_1 x_2$. Lets look at the parse tree of w. If we turn the parse tree upside down from the leftmost non terminal leaf from where $x_2$ starts then we will get the parse tree for $x_2 x_1$ , which is exactly what we are after. So through the construction described below we try to achieve this affect.\\
-\textbf{Construction:} Let us consider the new grammar $M^{'} = (V^{'},T,P^{'},S_0)$ to accept cycle(A). Now here, $ V^{'} = V \cup \{ Z^{'} for \ Z \in V \} \cup \{ S_0\}$\\ P is defined as follow: 
-\begin{itemize}
-    \item All the rules in P
-    \item $S_0 \rightarrow S$
-    \item $S^{'}$ $\rightarrow$ $\epsilon$
-    \item if  P  contained $ Z \rightarrow a$ add $S_0 \rightarrow aZ^{'}$
-    \item if P has $Z \rightarrow XY$ add $Y^{'} \rightarrow Z^{'}X$  and $X^{'} \rightarrow YX^{'}$
-\end{itemize}
-Now we have constructed the grammar $M^{'}$. Whats left is to show that L($M{'}$) is exactly cycle(A). \\
-\textbf{Claim:} L($M^{'}$) is same as cycle(A). \\
-\textbf{Proof:} 
+\textbf{Proof Idea:} Let us consider any string w in language A of the form $x_1 x_2$. For any CFG G' to accpet $w' = x_2x_1$ there should exist a prase tree for w' in G'. We will try to construct a parse tree of w' from parse tree of w from leftmost non terminal b of $x_2$ by
+somehow backtraking $x_2x_1$ from b. And add required transitions step by step.\\
+Now, lets see what are the production rules we require:- \\
 
+\begin{enumerate}
+    \item A new start state $S_0$\\
+    To accept new strings. As previous start state is limited to A .
+    \item $S_0 \rightarrow S$ and All productions of G.\\
+    For satisfying the case when $x_1 \text{ or } x_2 = \epsilon$
+    \item state $X' \forall $ states $X \in G$.\\
+    These states will denote the reverse of the corresponding states of G. (to backtrack and get a,b formed till any transition $S \rightarrow_* aXb$ in G)
+    \item $S_0 \rightarrow aX'$ for any production rule of the form $X \rightarrow a \in G$\\
+    This is to start backtracking from left most non terminal of $x_2$
+    \item $S' \rightarrow \epsilon$\\
+    This is to end backtracking (at the end we will reach at root when got complete string $x_2x_1$).
+    \item $Y' \rightarrow ZX' $ $\forall X \rightarrow YZ$\\
+    This is to backtrack and get complete string on the right of Y.\\
+    \textbf{Proof: }\\
+    Proving this inductively on number of parents of X from its path from S (lets say k):\\
+    \begin{itemize}
+        \item \textbf{Base case: k = 0} hence, X = S\\
+        Only string on the right of Y is subtree of Z (let's say z)\\
+        Then using above production rulw we can generate $z$ from $Y'$ as follows:\\
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=6cm]{5.jpg}
+        \end{figure}
+
+        \item \textbf{I.H.:} Let's assume the statement holds $\forall k \geq n $
+        \item \textbf{I.S.: } Now, if $k = n+1$ 
+        Let's say subtree(z) = x1 and remaining string on right of Y is x2.
+        Using the transition $Y' \rightarrow ZX' $, x1 can be generated from Z, and by induction hypothesis (as $k = n$ for $p_n$) we can generate x2 from $X'$.
+
+            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[angle=90,origin=c,width=6cm]{6.jpg}
+            \end{figure}
+        
+        Hence done
+    \end{itemize}
+
+    \item $Z' \rightarrow X'Y$ $\forall X \rightarrow YZ$\\
+    This is to backtrack and get complete string on the left of Z.\\
+    \textbf{Proof: }\\
+    Proving this inductively on number of parents of X from its path from S (lets say k):\\
+    Proof is very similar to the last one. Just now we are backtracing on the left side, still following is the diagram representation of the proof:\\
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=6cm]{7.jpg}
+    \end{figure}
+
+\end{enumerate}
+
+Now lets use the above added production rules and grammar to construct a CFG for cycle(A)\\
+Let G' be the grammar formed by adding above production rules and states to G.\\
+
+Lets say any string $x_1x_2 \in A$\\
+$=> \exists $ a parse tree P for $x_1x_2$ in G\\
+Let's try to construct a parse tree for $x_2x_1$ in G'\\
+Suppose left most non terminal of $x_2$ is $b$ then start from the production rule $S_0 \rightarrow bp'_k $ where $p_k $ is immediate parent of b in P\\
+Also lets say $p_1$ is the heighest parent of $b$ in P such that b is in the left subtree of $p_1$.\\
+Then assuming subtree of $p_1$ be the independent tree, we can construct $x_2$ from $p_k$ by rule 6.\\
+But we will end by at $p_1$ to be the rightmost child of $S_0$\\
+From $p_1$ we can generate $x_1$ by rule 7.\\
+Consider the following figure for detailed explanation:\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=6cm]{8.jpg}
+\end{figure}
+
+Hence we have constructed a CFG such that its accepts $cycle(A)$, hence it is CFL.
 \pagebreak
 
 \section{Question 5}
