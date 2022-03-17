@@ -50,14 +50,20 @@ Thus we have successfully constructed a PDA M which accepts $L \cap M$. Thus CFL
 For the first part we have to show that T=$L||L'$ is a CFL if L is CFL and $L'$ is regular. Since L is CFL we are given a PDA P=$(S_1,\Sigma,\Gamma,\delta_1,s_1,F_1)$ which recognizes it. Also we have a DFA D=$(S_2,\Sigma,\delta_2,s_2,F_2)$ which recognises $L'$. These are the things given to us.\\
 \textbf{To Prove:} T is CFL.\\
 \textbf{Proof Idea:} To show that T is CFL we would have to construct a PDA say R which accepts it. Now the main idea behind the working of this machine is that after reading alphabet of the input tape it would first check whether the position if odd or even (this can be done with an extra variable in the state) If the position is even then production rules of PDA P apply or else the transition rules of D apply. In the transitions we also have to update the position counter which tell us whether we are at odd or even location. So basically we are running PDA P on odd position and DFA D on even positions. The final accepting condition would be that position reached be even and states in both PDA P and DFA D are final. The specific construction of R is given as follows.\\
-\textbf{Construction:} R=$(S,\Sigma,\Gamma,\delta,s,F)$. Here S is  $\{0,1\}*S_1 * S_2$ , F= $\{0\}F_1 * F_2$. The start state s=$(1,s_1,s_2)$ The transition function $\delta$ is described as below\\
+\textbf{Construction:} R=$(S,\Sigma,\Gamma,\delta,s,F)$. Here S is  $\{0,1\}*S_1 * S_2$ , F= $\{1\}*F_1 * F_2$. The start state s=$(1,s_1,s_2)$ The transition function $\delta$ is described as below\\
 $\delta((1,p_1 ,q_1),a,\alpha)$ would contain $((0,p_2,q_1),\beta)$ if $\delta_1(p_1,a,\alpha)$ contained $(p_2,\beta)$.\\
 $\delta((0,p_1 ,q_1),a,\alpha)$ would contain $((1,p_1,q_2),\alpha)$ if $\delta_2(q_1,a)$=$\{q_2\}$.\\
 Here $p_1,p_2 \in S_1$  $q_1,q_2 \in S_2$  $a \in \Sigma$  $\alpha , \beta \in \Gamma$\\
 The accepting condition is that the final state reached after reading the input must belong to F.\\
 Now our claim is that PDA R exactly recognises every string that belongs to T. \\
 \textbf{Claim:} R recognises the language T.\\
-\textbf{Proof:}\\
+\textbf{Proof:} We have to show two things first that any string accepted by R belongs to T and every string belonging to T is accepted by R. \\
+Let us consider any string $w $ and $w'$ $|w| = |w'|= n$. $t=w||w'$. Let the run of P be $(q_1,\epsilon)$ , $(q_2,\alpha_2) , (q_3,\alpha_3) .....(q_{n+1} ,\alpha_{n+1} )$ for w and the run of D on $w'$ be $p_1 , p_2 , q_3 ,.....p_{n+1} $. $q_1 = s_1$ and $q_2 =s_2$. Now what would be the run of $w || w'$ on R ? Start configuration of R would be $((1,q_1,p_1), \epsilon)$. Now the way we defined our transition function on odd positions it follows the the transition rules of P (and only second variable of the state tuple i.e. state of P would be modified)  and on even position rules of D (and only third variable of the state tuple i.e. state of D would be modified). We also know rules of D not make any changes in the stack. Thus after reading $2*i | i> 0$  length of input of t the configuration that R would be in is $((1,q_{i+1},p_{i+1}),\alpha_{i+1})$  and after reading $(2*i+1) |  i \geq 0$ configuration would be $((0,q_{i+1},p_{i}),\alpha_{i+1})$. Now when all the input is read i=n so the configuration that R would be in is $((1,q_{n+1},p_{n+1}),\alpha_{n+1})$.\\
+If $w \in L$ then $q_{n+1} \in F_1$ and   $w' \in L'$ then $p_{n+1} \in F_2$. So when t=$w|| w'$ run on R final state $(1,q_{n+1},p_{n+1}) \in F$. So t is accepted. So every string in T is recognised by R. Now lets prove the other way.\\ 
+Suppose R accepts a string t so final state $(1,q_{n+1},p_{n+1}) \in F$ which would mean $q_{n+1} \in F_1 \rightarrow  w \in L$ and $p_{n+1} \in F_2 \rightarrow w' \in L'$. Thus t=$w || w'$, $t \in T$. \\
+Thus we have show that any string accepted by R belongs to T and every string belonging to T is accepted by R. So our claim that R recognizes T is true. \\
+\newline
+Since we have constructed a PDA R for the language T=$L || L'$ , we have sucessfully proved that T is indeed a CFL.
 \\
 \newline
 Now let us see the second part of the question. Is $L||L'$ a CFL if both L and $L'$ are
