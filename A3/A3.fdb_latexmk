@@ -1,11 +1,11 @@
 # Fdb version 3
-["pdflatex"] 1647496104 "e:/Semesters/Sem6/COL352/A3/A3.tex" "A3.pdf" "A3" 1647496106
+["pdflatex"] 1647496375 "e:/Semesters/Sem6/COL352/A3/A3.tex" "A3.pdf" "A3" 1647496377
   "1.jpg" 1647420408 4342156 691874d810bf761dfa09989402540778 ""
   "2.jpg" 1647420404 4372413 75c7f5f6176942e751adcd5400579385 ""
   "3.jpg" 1647495960 4793401 4ea1679bcc0e56518b790fcb6b13a727 ""
   "4.jpg" 1647495964 5110365 b75c9e74785ee809207e5273126056ee ""
-  "A3.aux" 1647496106 938 1e2aea277006b559c36ddfa72936aa7b "pdflatex"
-  "A3.tex" 1647496103 18869 9a6b462587bb4bbcec9c841ae2a83b90 ""
+  "A3.aux" 1647496377 938 1e2aea277006b559c36ddfa72936aa7b "pdflatex"
+  "A3.tex" 1647496374 20845 6dedd7c31ace5ebbf46033728db9b312 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1630836279 11548 90f32ca402142a3a5a46501564b29aef ""
   "C:/Users/sachi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1630834124 9715383 3f3e24fb5183498c2db26a3dc7a74ee7 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1643215815 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
@@ -80,8 +80,8 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1618240528 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1622550326 13197 df0fe9a9695763546b59e02a008447b3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1622550326 10214 00ce62e730d0cfe22b35e8f1c84949c7 ""
-  "e:/Semesters/Sem6/COL352/A3/A3.tex" 1647496103 18869 9a6b462587bb4bbcec9c841ae2a83b90 ""
+  "e:/Semesters/Sem6/COL352/A3/A3.tex" 1647496374 20845 6dedd7c31ace5ebbf46033728db9b312 ""
   (generated)
-  "A3.log"
   "A3.aux"
+  "A3.log"
   "A3.pdf"
