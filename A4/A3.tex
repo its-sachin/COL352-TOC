@@ -158,6 +158,82 @@ Correctness of the above description is proved earlier by the claim that f M don
 \textbf{Let $AM_{BCFG} = \{< G > | G$ is an ambiguous CFG $\}$ \\
     Show that $AM_{BCFG}$ is undecidable via a reduction from PCP\\}
 
+To prove that $AM_{BCFG}$ is undecidable first we will assume that $AM_{BCFG}$ is decidable. Then 
+we will try to arrive at contradiction by showing that this would imply PCP is decidable but that is not.\\
+
+First let's see an instance P of PCP:- \\
+
+Provided:\\
+$\lfloor \frac{t_1}{r_1} \rfloor , \lfloor \frac{t_2}{r_2} \rfloor ....... \lfloor \frac{t_n}{t_n} \rfloor$ \\
+where, $t_i , r_i \in \Sigma^* , |t_i| = |r_i| \forall i \in [1,n]$\\
+
+Find:\\
+a sequence $\{ i_1,i_2.....i_k \}$ such that $t_{i_1}t_{i_2}.....t_{i_k} = r_{i_1}r_{i_2}.....r_{i_k}$\\
+
+Now, we need to create a grammar G from P such that deciding whether G is  ambiguous or not would solve PCP P.\\
+For any grammar to be ambiguous it have some string w that has 2 left most derivations.\\
+So, we need to match solution of P to existence of w.\\
+
+One such construction is as follows:- \\
+
+G = $\{ V,\Sigma, R, S \}$, where \\
+$Q = \{S, T, R\}$\\
+$\Sigma = \{t_1, t_2 .... t_n\} \bigcup \{r_1, r_2 .... r_n\} \bigcup \{1,2,....n\}$\\
+R defined as follows:- \\
+$S \rightarrow T | R$\\
+$T \rightarrow t_iTi | t_i i :  \forall i \in [1,n] $\\
+$R \rightarrow r_iRi | r_i i :  \forall i \in [1,n] $\\
+
+Now, suppose $AM_{BCFG}$ is decidable. Then we can decide whether G is ambiguous or not:- \\
+Suppose G is ambigious.\\
+$=> \exists w \in \Sigma^* $ such that w has 2 left most derivations\\
+following cases are possible:- 
+
+\begin{enumerate}
+    \item \textbf{First production rule for w is same in its both derivations: }\\
+    We will shoe that this is not possinle.\\
+    WLOG let it be $S \rightarrow T$ (since both $S \rightarrow T , S \rightarrow R$ have equivalent further production rules in T and R and proof for one can be 
+    easily converted to other, so we will prove ony for one of them) \\
+
+    Parse trees formed are:- \\  
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm]{1.jpg}
+    \end{figure}
+
+    We have w = $t_{i_1}t_{i_2}....t_{i_k}i_k....i_1$ = $t_{j_1}t_{j_2}....t_{j_s}j_s....j_1$\\
+    Since i's and j's are unique characters, matching both of them from last would yield $i_1 = j_1 ..... i_k = j_s$\\
+    That gives both of the derivations are same. \\
+    Hence this case is not possible.\\
+
+    \item \textbf{First production rule for w is different in its two derivations:}\\
+    So, only possible different production rules are $S \rightarrow T, S \rightarrow R$\\
+    Parse trees formed are:- \\  
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=7cm]{2.jpg}
+    \end{figure}
+
+    We have w = $t_{i_1}t_{i_2}....t_{i_k}i_k....i_1$ = $r_{j_1}r_{j_2}....r_{j_s}j_s....j_1$\\
+    Matching frm last would give $i_1 = j_1 ..... i_k = j_s$ and also $k=s$ ----- (1)\\
+    Matching remaining characters would yield $t_{i_1}t_{i_2}...t_{i_k} = r_{j_1}r_{j_2}....r_{j_s}$\\
+    Using 1 gives:- \\
+    $t_{i_1}t_{i_2}...t_{i_k} = r_{i_1}r_{i_2}....r_{i_k}$\\
+    That is a solution of PCP.\\
+\end{enumerate}
+Hence if G is ambiguous then PCP is solvable. Moreover above proof with reverse implication can be used to prove that if G is unambiguous then PCP is not solvable. Because 
+if G is unambiguous then there does not exist any such w each permutation of $t_i , r_i$ different.\\
+
+Hence we have shown that solution of PCP can be found using $AM_{BCFG}$. More formally :- \\
+Construct grammar G from any instance P of PCP.\\
+Use $AM_{BCFG}$ to find whether G is ambiguous.\\
+If G is ambiguous then accept .\\
+Else reject.\\
+
+This would imply that PCP is decidable but that is a contradiction hence $AM_{BCFG}$ is undecidable.\\
+
 \pagebreak
 
 
@@ -183,8 +259,9 @@ a sequence $\{ i_1,i_2.....i_k \}$ such that $t_{i_1}t_{i_2}.....t_{i_k} = r_{i_
 First let us dicuss the approach informally, Now to find a sequence that satisfies above property, the first index $i_1$ should be chosen such that $t_{i_1}[0] = r_{i_1}[0]$ since we want the complete string to be same 
 and for that first character must also be same.\\
 Moreover, we want $t_{i_1}[0:k] = r_{i_1}[0:k]$ where k is $min(|t_{i_1}|,|r_{i_1}|)$\\
-But we know that $|t_{i_1}| = |r_{i_1}| => t_{i_1} = r_{i_1}$ is needed for a solution to exists. ------ (1)\\
-But is we have found such a index then we are done, since we have found a sequence = $\{i_1\}$  that satisfies the requirenment. That means existence of such an index is sufficient for the solution to exist\\
+But we know that $|t_{i_1}| = |r_{i_1}|$\\
+$ => t_{i_1} = r_{i_1}$ is needed for a solution to exists. ------ (1)\\
+But if we have found such a index then we are done, since we have found a sequence = $\{i_1\}$  that satisfies the requirenment. That means existence of such an index is sufficient for the solution to exist\\
 Also, existence of such a index is necessary for a solution to exist (from 1).\\
 Hence to find the solution of SPCP we need to find an i such that $t_i = r_i$\\ That can be easily done by a turing machine without haulting.\\
 
