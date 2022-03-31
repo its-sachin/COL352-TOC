@@ -81,6 +81,21 @@ Hence we have successfully proved the hypothesis.
 w $\in$ G. Given a CFG G and a variable A, consider the problem of testing whether A is
 usable. Formulate this problem as a language and show that it is decidable\\}
 
+{\large \textbf{Proof : \\}}
+\vspace{10pt}
+Language in formulated way is,
+$USABLE_{CFG}$ = $\{$ $<$$G,A$$>$ : G is a CFG, A usable for G $\}$
+\\
+
+$A$ variable is usable if in the derivation of : $s\Rightarrow^*xAy$ of $G$ such that $L(x)$, $L(A)$ and $L(y)$ are all nonempty and exists.
+Here points that should be noted are , if usable CFG named as $A_{CFG}$ is decidable then language will be decidable.\\
+
+{\large \textbf{Idea and Proof of Construction : \\}}
+Here we create a tree-like structure, where nodes are non-terminals and these nodes are derived from $G$. A connection from $B$ to $C$ is ensured iff $s\Rightarrow^*aCb$.  To find if our machine accepts or rejects the input, we will just check if there exists a path from $S$ to $A$. If a path exists then we accept else rejected. Efficient algorithm can be employed to check for existence of such paths like DFS or BFS. This tree formed is equivalent to parse tree in CFGs. Inputting $G$ again and again to the turing machine and passing through all possible combinations of derivatives, we can form this tree. Here only limited number of branches can be created or are possible. This is because exhaustive nature is property of production rules. Thus, will halt for sure but it might accept or reject. Hence, language is decidable. \\
+
+{\large \textbf{Construction : \\}}
+To decide we have a decider $M$ and $L(x)$, $L(A)$ and $L(y)$. We have a TM $S$ that will decide if we will accept or reject the input. $M'$ is another custom CFG that works as a decider for $A_{CFG}$. B is another language with recurring input of $M$. Here, we run TM $S$ with input $<M',M>$. If $S$ accepts then then accept else reject. 
+
 \pagebreak
 
 
