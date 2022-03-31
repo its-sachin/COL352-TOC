@@ -1,9 +1,11 @@
 # Fdb version 3
-["pdflatex"] 1648707277 "e:/Semesters/Sem6/COL352/A4/A3.tex" "A3.pdf" "A3" 1648707278
-  "A3.aux" 1648707278 816 eb71d710e7f2a9802f2655342cb6a509 "pdflatex"
-  "A3.tex" 1648707276 5873 587cd1c9d28e6beec30771593f7eb67b ""
+["pdflatex"] 1648709867 "e:/Semesters/Sem6/COL352/A4/A3.tex" "A3.pdf" "A3" 1648709868
+  "A3.aux" 1648709868 818 b90be5f538bb095bbd6ae6a0b913e205 "pdflatex"
+  "A3.tex" 1648709866 15537 95c44be59336c480de21c68052cf5dc3 ""
+  "C:/Users/sachi/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1630836279 11548 90f32ca402142a3a5a46501564b29aef ""
   "C:/Users/sachi/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1630834124 9715383 3f3e24fb5183498c2db26a3dc7a74ee7 ""
   "C:/Users/sachi/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1643215815 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+  "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -36,10 +38,12 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1247596667 37912 07513ec114ac737ab54cea0152f4424b ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
@@ -69,8 +73,8 @@
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1618240528 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1622550326 13197 df0fe9a9695763546b59e02a008447b3 ""
   "C:/Users/sachi/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty" 1622550326 10214 00ce62e730d0cfe22b35e8f1c84949c7 ""
-  "e:/Semesters/Sem6/COL352/A4/A3.tex" 1648707276 5873 587cd1c9d28e6beec30771593f7eb67b ""
+  "e:/Semesters/Sem6/COL352/A4/A3.tex" 1648709866 15537 95c44be59336c480de21c68052cf5dc3 ""
   (generated)
+  "A3.aux"
   "A3.pdf"
   "A3.log"
-  "A3.aux"

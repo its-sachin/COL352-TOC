@@ -99,7 +99,7 @@ Let us try to construct a turing machine T' from T that accepts $A_{TM}$ (that i
 \begin{enumerate}
     \item Run M on w and if at any transition it accpets w, move to leftmost tape cell and try to move its head to left.\\
         This is done to make sure that on acceptance there is left movement of the head on leftmost tapecell.\\
-    \item If at any transition it is on leftmost cell and try to move left, then move rightward (writing the same character that M wanted to write on this transition) and move 
+    \item If at any non accepting transition tape is on leftmost cell and try to move left, then move rightward (writing the same character that M wanted to write on this transition) and move 
             left without changing tape. More formally:- \\
             $q_iw_1....w_k \rightarrow q_iw'_1...w_k $\ is changed to $q_iw_1....w_k \rightarrow w'_1q_iw_2...w_k \rightarrow q_1w'_1....w_k$\\
             This is done to make sure that there if no left movement if head is on leftmost tape, if state is not accepting.
@@ -164,6 +164,33 @@ Correctness of the above description is proved earlier by the claim that f M don
 \section{Question 8}
 \textbf{In the Silly Post Correspondence Problem (SPCP), the top string in each pair has the same
 length as the bottom string. Show that the SPCP is decidable.\\}
+
+To prove that the SPCP is decidable we need to show that there exists a turing machine T that decides the SPCP.\\
+We will provide a algorithm that can be implemented in a turing machine to decide the SPCP.\\
+
+Now, lets first formally define the problem of SPCP.\\
+
+\textbf{Given: }\\
+
+$\lfloor \frac{t_1}{r_1} \rfloor , \lfloor \frac{t_2}{r_2} \rfloor ....... \lfloor \frac{t_n}{t_n} \rfloor$ \\
+where, $t_i , r_i \in \Sigma^* , |t_i| = |r_i| \forall i \in [1,n]$\\
+
+\textbf{To find: } \\
+a sequence $\{ i_1,i_2.....i_k \}$ such that $t_{i_1}t_{i_2}.....t_{i_k} = r_{i_1}r_{i_2}.....r_{i_k}$\\
+
+\textbf{The algorithm: }\\
+
+First let us dicuss the approach informally, Now to find a sequence that satisfies above property, the first index $i_1$ should be chosen such that $t_{i_1}[0] = r_{i_1}[0]$ since we want the complete string to be same 
+and for that first character must also be same.\\
+Moreover, we want $t_{i_1}[0:k] = r_{i_1}[0:k]$ where k is $min(|t_{i_1}|,|r_{i_1}|)$\\
+But we know that $|t_{i_1}| = |r_{i_1}| => t_{i_1} = r_{i_1}$ is needed for a solution to exists. ------ (1)\\
+But is we have found such a index then we are done, since we have found a sequence = $\{i_1\}$  that satisfies the requirenment. That means existence of such an index is sufficient for the solution to exist\\
+Also, existence of such a index is necessary for a solution to exist (from 1).\\
+Hence to find the solution of SPCP we need to find an i such that $t_i = r_i$\\ That can be easily done by a turing machine without haulting.\\
+
+For each $i \in [1,n]$ do\\
+\hspace*{2cm} If $t_i = r_i$ then accept\\
+\hspace*{0.5cm} If no such i exist then reject\\
 
 \pagebreak
 
