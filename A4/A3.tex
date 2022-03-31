@@ -59,6 +59,28 @@ usable. Formulate this problem as a language and show that it is decidable\\}
 tempts to move its head left when its head is on the left-most tape cell. Formulate this
 problem as a language and show that it is undecidable\\}
 
+To prove that a language is undecidable it is sufficient to show that if it were decidable then it would imply
+that some other language that is already known to be undecidable is also decidable.\\
+We will follow the similar proof by contradiction and assume language L to be decidable.\\
+First let us provide a formal desciption of L:\\
+$L = \{ <M,w> | $ M moves its head left on w when its head is on the left-most tape cell $ \}$\\
+
+Now, assume L to be decidable. Then there exists a turing machine T that decides L.\\
+Let us try to construct a turing machine T' from T that accepts $A_{TM}$ (that is what we are doing in every undecidablility proof in class)
+\begin{enumerate}
+    \item Run M on w and if at any transition it accpets w, move to leftmost tape cell and try to move its head to left.\\
+        This is done to make sure that on acceptance there is left movement of the head on leftmost tapecell.\\
+    \item If at any transition it is on leftmost cell and try to move left, then move rightward (writing the same character that M wanted to write on this transition) and move 
+            left without changing tape. More formally:- \\
+            $q_iw_1....w_k \rightarrow q_iw'_1...w_k $\ is changed to $q_iw_1....w_k \rightarrow w'_1q_iw_2...w_k \rightarrow q_1w'_1....w_k$\\
+            This is done to make sure that there if no left movement if head is on leftmost tape, if state is not accepting.
+\end{enumerate} 
+
+Using above construction we've made sure that T' attempts to move its head left from leftmost tapecell on $<M,w>$ if and only if M accepts w.\\
+Now, simply run T' on T to decide whether it attempts to move its head left from leftmost tapecell. That way we can decide whether M accepts w or not but that is 
+a contradiction since $A_{TM}$ is undecidable (proved in class)\\
+Hence L is undecidable.
+
 \pagebreak
 
 
@@ -68,6 +90,37 @@ problem as a language and show that it is undecidable\\}
 tempts to move its head left at any point during its computation on w. Formulate this
 problem as a language and show that it is decidable.\\}
 
+The language formed by the above problem is:- \\
+$L = \{ <M,w> |$ M moves its head left on w at any point \}.\\
+
+To prove that any language is decidable it is sufficient to show that there exists a Turing Machine that 
+decides that language. So we will construct a turing machine T that can decide the above language.\\
+But before that let's analyse the 2 possible cases of w on M:-
+
+\begin{enumerate}
+    \item \textbf{M never moves its head left on w :}
+    This means that M always moves its head right on w. Lets see the run of T on w (Let $|w| = n$).\\
+    $q_0w \rightarrow aq_1w_2....w_n \rightarrow_* w'q_i \sqcup \rightarrow w' b q_{i+1} \sqcup \rightarrow_{k-1} w' b_1....b_k q_{i+k} \sqcup   $\\
+    Now, since number of states and n are finite, if we take k big enough by pegionhole principle $q_{i+k} = q_i$.\\
+    Take k = $|Q|+1$ $=>$ by pegionhole principle some of the states will repeat in k transitions, and since next tape alphabet 
+    is always $\sqcap$ (since we are always moving right) same cycle will repeat infinite times.\\
+    Hence if M don't moves its head left on w in first $|w| + |Q| + 1$ transitions then it will never move its head left on w.\\
+
+    \item \textbf{M moves its head left on w :}
+    From the above case it is clear that M moves its head left on w in first $|w| + |Q| + 1$ transitions.\\
+    
+\end{enumerate}
+
+Now consider the desciption of T on w.\\
+\begin{enumerate}
+    \item Run first $|w| + |Q| + 1$ transitions of M on T.
+    \item If at any time M moves its head left on w then accept.
+    \item Otherwise reject.
+\end{enumerate}
+
+
+Point 1 is possible because we can always simulate a turing machine on another turing machine if its description is given (Universal Turing machine).\\
+Correctness of the above description is proved earlier by the claim that f M don't moves its head left on w in first $|w| + |Q| + 1$ transitions then it will never move its head left on w.\\
 \pagebreak
 
 
