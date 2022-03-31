@@ -14,20 +14,49 @@
 \date{March, 2022}
 
 \begin{document}
-
 \maketitle
 
 \section{Question 1}
-\textbf{ Show that every infinite Turing-recognizable language has an infinite decidable subset.}\\
-
+\textbf{Show that every infinite Turing-recognizable language has an infinite decidable subset.}\\
+\newline 
+\textbf{Given:} So lets us assume that the turing-recognizable language to be L. As we know a language is turing-recognizable iff it as an enumerator which accepts it. Let that enumerator be W. \\
+\textbf{Proof Idea:} We will give a new language M which will be the subset of the language A and would be also infinite. Then we will that we could construct a TM T which would accept it. Also we will show that the TM constructed is a decider. So thus we would have proved the above stated hypothesis. \\
+\textbf{Proof:} Let us give the description of the new language M. So string $w \in M$ iff it satisfies the following given properties:
+\begin{enumerate}
+    \item The enumerator W should have printed this string for number of times greater than 0.
+    \item $|w|$ should be grater than the length of all the individual strings W has printed before. 
+\end{enumerate}
+So we have got the description of the language M. Now clearly $M \subseteq L$, because L is the set of all the strings printed by W and M is set of strings printed by W with some extra conditions.\\
+Also M is an infinite set. To show this let us take any $k \geq 0$. We know this that there are only finitely many strings which are possible than the length k. So it is bound to happen that the enumerator W will print a string greater than k. Let the first string printed whose length is greater than k be q. Clearly q belongs to the set M as it satisfies both the conditions required. Now L is an infinite set so k can be any arbitrary number. This means that A would contain strings whose lengths are arbitrary long. Thus the set A is infinite. \\
+Now we have shown that language A is infinite and subset of M. we just have to create a TM T for the language A and show it is a decider. So on every input w the TM T follows the following steps in order:
+\begin{enumerate}
+    \item We run the enumerator W repeatedly till the point it either prints the string w or prints a string whose length is greater than $|k|$.
+    \item If the length of string printed is greater than $|k|$ reject. 
+    \item If the printed string is w accept.
+\end{enumerate}
+Now we have to show T decides A. Firstly we can see that T always halts on any input. This is due to the fact that enumerator E is continously printing string of L which is an infinite set with arbitrary long strings. So the machine would come of out of step 1 after some time. And if it came out it will either reject or accept. Hence the machine always halts.\\
+Now we have to show that for any string w the following thing holds $w \in M$ iff T accepts it. Now if we take a string $w \in M$ clearly T would accept as the very conditions (1 and 2 mentioned on the previous page) that made w to be in M is what the T is checking. Also the other way is clear too. If a string is accepted by T that clearly implies both the conditions of being in M is satisfied. So in total we can say T decides M.\\
+We have shown  a decidable infinite subset of the infinite recognizable language. 
+Hence Proved.
 
 \pagebreak
 
-
 \section{Question 2}
-
-\textbf{Show that single-tape TMs that cannot write on the portion of the tape containing the input
-string recognize only regular languages.\\}
+\textbf{Show that single-tape TMs that cannot write on the portion of the tape containing the input string recognize only regular languages.}\\
+\newline 
+\textbf{Given:} So we are given a single taped TM T= $(Q, \Sigma, \Gamma, q_0, q_a, q_r)$ ($q_a$ is accept state and $q_r$ is the reject state) with the restriction that it can not write on the input portion on the tape. Let the language recognized by such a TM be L. Now we have to show that language L is in-fact regular. \\
+\textbf{Proof Idea:} Now we have to show that L is regular. To do so we will show a myhill-nerode relation on the language.\\
+Now let us see what is the difference between the TM given to us and the normal one. One important point is that the input tape in T has two part one is only the readable part(which has the input string) and the readable-writable part which is initially blank. Here in the present setting the problem is the restriction on the what the TM can remember (as the only way it has to remember is to write it down on the tape or through states). When T transitions from the input region of the tape to writable region, it cant remember(as it cant write) any information other than the state it is in. Same thing happens when it enters back into the input region, it only know the state and nothing of the things written on the writable region. So in a way the state that T emerges out of read only region is the only memory T has of the input. This exact fact is used by us to prove that T recognises only regular languages. \\
+\textbf{Proof:} As described above T can only remember certain information about the input. The fact that T can not remember what it has written in the writable region gives rise to a function which is unchanging, we will define it as $f(w,q)=q'$. The meaning of this function is that when the input head enters the input region on state q, the input region has w, then T would leave the input region on the state q'. Now let us take care of few technicalities. First if after entering the input region if the input head doesn't leave the input region then q' would be equal to $q_a$ or $q_r$ according to the fact that w is accepted or not. Now we will show that this function remains constant throughout the run of the machine. This is because of the fact that since T cannot write in the input region w remain constant. Also this function does not have any effect by what is written in the writable region of the tape, and this should be the case as T cant reference any of that in the read-only region.\\
+So when describing this function it would lead to a table with $|Q|$ entries. We have to add one more entry to this which is the state which is reached when the input head moves into the writable region for the first time(This is not captured in the function entries given up until this point because it is the first entry to the writable region.). If the input head never moves into the writable region this entry must be $q_a$ or $q_r$ accordingly. Now lets call this entry $f(w, \epsilon)$ \\
+This function completely determines the behaviour of T on the input string w. This is due to again the fact of restricted memory present in this model.\\
+Now lets define the myhill-nerode relation on any two strings a and b , $a \equiv b$ iff all the entries of the table of a and b is the same. Now we will show that this relation satisfies all the properties required. 
+\begin{itemize}
+    \item \textbf{Finite Index:} Now let us look at the size of the table. The number of rows in the table is exactly equal to $|Q|+1$ and for each of these rows the possible entry set size if $|Q|$. So the number of different table could be only as large as ${|Q|^{|Q|+1}}$. Now number of equivalence classes of this relations is  finite.
+    \item \textbf{Refinement:} Now the refinement property states that if x and y belong to the same equivalent class then they are either both rejected or both accepted. Now this is clearly the case. This is due to the fact that this table completely determines all that T does on the input. In the table we fill $q_a$ or $q_r$ at some rows too if the input head doesn't return to the writable region(described above). If the table is same then that means that they are both either rejected or accepted.
+    \item \textbf{Right Congruence:} The right congruence property states that if x and y belong to same class then so do xz and yz. So in our case it would mean that the tables of both xz and yz is also the same. This is easy to verify. Since table of x and y was initially same and now identically we have added a alphabet z at the end of it the changes to the table would be also identical. 
+\end{itemize}
+Now since we have shown a myhill-nerode relation on the language L this means that L is regular. Thus the language recognized by single-tape TMs that cannot write on the portion of the tape containing the input string is regular. Hence Proved.
 
 \pagebreak
 
