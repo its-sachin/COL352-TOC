@@ -62,13 +62,15 @@ Now since we have shown a myhill-nerode relation on the language L this means th
 
 
 \section{Question 3}
-
-\textbf{Let C be a language. Prove that C is Turing-recognizable iff a decidable language D exists
-such that
-    \begin{center}
-        $C = \{x | \exists y (<x, y> \in D) \}$\\
-    \end{center}
-}
+\textbf{Let C be a language.  Prove that C is Turing-recognizable iff a decidable language D exists such that \boldsymbol{$$C=\{ x| \exists y( <x, y> \in D)\}$$}}
+\textbf{Proof:} We have two directions to prove. First let us prove that if such a decidable language D exists  then C is Turing recognizable.\\
+This is easy to prove. We can construct a TM T such that when it receives an input string x it checks for all the string y, weather $<x,y> \in D$. Since D is a Turing decidable language this check completes in finite steps. So we can say that if a string x belongs to C then T can recognize it in finite steps but when x does not belong to C then the same could not be said (as then T would not halt, it will keep on checking for all the y's). So C is a Turing-recognizable language. Thus we have proved one side.\\
+Now for the other direction we have to show that if C is Turing-recognizable then a decidable language D exist such that $C=\{ x| \exists y( <x, y> \in D)\}$. We know here that C is Turing-recognizable so that means there exists a TM T which recognizes it. Now we will construct a new TM M which works in the following way:\\
+$$M \ accepts \ <x,y> \ iff \ T \ accepts \ x \ within \ |y| \ steps.$$
+Let the language recognized by it be D. If we look at TM M described above we  observe the fact that it terminates in a finite number of steps (i.e. at max $|y|$ steps and y is a finite string) and either rejects or accepts. So TM M halts on every input string and thus is a decider. So the language D is a Turing-decidable language. \\
+Now we will have to also show that a string $x \in C$ iff  $ \exists y \ s.t. \ <x,y> \in D$. So proof of one side goes as follows: if $x \in C$ then that would mean that T accepts it in some finite steps say k. So take any string y where $|y| \geq k$ then it would mean $<x,y> \in D$ (because of the way we defined D). Now to prove the other side, we have $<x,y> \in D$, by the definition provided of D above it means that x is accepted by T in less than or equal to $|y|$ steps which implies $x \in C$. \\
+Thus in totality we have shown $C=\{ x| \exists y( <x, y> \in D)\}$ , D to be a Turing-recognizable language. So we have proved this direction too. \\
+Hence we have successfully proved the hypothesis. 
 
 \pagebreak
 
